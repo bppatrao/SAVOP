@@ -27,16 +27,19 @@ public class Savop {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
+        int ndeputados=0;
         char opcao;
+        String[][] deputados;
+        deputados = new String[MAX_DEPUTADOS][4];
         //teste1
 
         do {
             opcao = menu();
             switch (opcao) {
                 case '1':
-                    out.format("1");
+                    ndeputados=lerFicheiro(deputados);
 
                     continuar();
                     break;
@@ -119,16 +122,18 @@ public class Savop {
          * no vetor vazio recebido
          * Retorna o número de linhas lidas
          */
+        
         Scanner lerficheiro = new Scanner(new File(FILE_DEPUTADOS));
         int nDeputados = 0;
         while (lerficheiro.hasNext() && nDeputados < MAX_DEPUTADOS) {
             String linha = in.nextLine();
             // teste para verificar a linha ignorando as linhas vazias
-            if (linha.length() > 0) {
+            if (!linha.isEmpty()) {
                 nDeputados = guardarDeputados(linha, deputados, nDeputados);
             }
         }
         lerficheiro.close();
+        continuar();
         return nDeputados;
     }
 

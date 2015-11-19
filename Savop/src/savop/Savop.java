@@ -6,6 +6,7 @@
 package savop;
 
 import java.io.FileNotFoundException;
+import java.io.File;
 import java.util.Formatter;
 import java.util.Scanner;
 
@@ -34,42 +35,54 @@ public class Savop {
         do {
             opcao = menu();
             switch (opcao) {
-                case 1:
+                case '1':
+                    out.format("1");
 
                     continuar();
                     break;
-                case 2:
+                case '2':
+                    out.format("2");
 
                     continuar();
                     break;
-                case 3:
+                case '3':
+                    out.format("3");
 
                     continuar();
                     break;
-                case 4:
+                case '4':
+                    out.format("4");
 
                     continuar();
                     break;
-                case 5:
+                case '5':
+                    out.format("5");
                     continuar();
                     break;
-                case 6:
+                case '6':
+                    out.format("6");
                     continuar();
                     break;
-                case 7:
+                case '7':
+                    out.format("7");
                     continuar();
                     break;
-                case 8:
+                case '8':
+                    out.format("8");
                     continuar();
                     break;
                 default:
-                    out.format("%n%s%n", "Opção Incorrecta.");
+                    if (opcao != '0') {
+                        out.format("%n%s%n", "Opção Incorrecta.");
+                    } else {
+                        out.format("%n%s%n", "Saiu");
+                    }
                     continuar();
                     break;
 
             }
 
-        } while (opcao != 0);
+        } while (opcao != '0');
 
     }
 

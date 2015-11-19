@@ -128,7 +128,7 @@ public class Savop {
         while (lerficheiro.hasNext() && nDeputados < MAX_DEPUTADOS) {
             String linha = in.nextLine();
             // teste para verificar a linha ignorando as linhas vazias
-            if (!linha.isEmpty()) {
+            if (linha.length()>0) {
                 nDeputados = guardarDeputados(linha, deputados, nDeputados);
             }
         }

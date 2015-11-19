@@ -110,48 +110,47 @@ public class Savop {
 
     }
 
-    /**
-     * Carrega informação dos deputados para memória a partir de ficheiro de
-     * texto de nome FILE_DEPUTADOS
-     *
-     * @param deputados - matriz de strings para guardar a info de deputados
-     * @return o número de deputados inseridos na matriz
-     * @throws FileNotFoundException
-     */
-    private static int lerInfoFicheiro(String[][] deputados) throws FileNotFoundException {
-        Scanner fin = new Scanner(new File(FILE_DEPUTADOS));
+  
+    private static int lerFicheiro(String[][] deputados) throws FileNotFoundException {
+        /**
+         * O metodo lerFicheiro vai receber como parametro vetor vazio
+         * ler todos os dados do ficheiro deputados.txt
+         * Com a utilização do metodo guardarDadosDeputado guarda os dados
+         * no vetor vazio recebido
+         * Retorna o número de linhas lidas
+         */
+        Scanner lerficheiro = new Scanner(new File(FILE_DEPUTADOS));
         int nDeputados = 0;
-        while (fin.hasNext() && nDeputados < MAX_DEPUTADOS) {
+        while (lerficheiro.hasNext() && nDeputados < MAX_DEPUTADOS) {
             String linha = in.nextLine();
-            // Verifica se linha não está em branco
+            // teste para verificar a linha ignorando as linhas vazias
             if (linha.length() > 0) {
-                nDeputados = guardarDadosDeputado(linha, deputados, nDeputados);
+                nDeputados = guardarDeputados(linha, deputados, nDeputados);
             }
         }
-        fin.close();
+        lerficheiro.close();
         return nDeputados;
     }
 
-    /**
-     * Acede à informação de uma linha do ficheiro e guarda na estrutura dados
-     * deputados se a linha tiver a estrutura correta e o id com 5 carateres
-     *
-     * @param linha - String com o conteúdo de uma linha do ficheiro com info de
-     * um deputado
-     * @param deputados - matriz de strings com a informação dos deputados
-     * @param nDeputados - número de deputados existentes na matriz deputados
-     * @return o novo número de deputados
-     */
-    private static int guardarDadosDeputado(String linha, String[][] deputados, int nDeputados) {
-        // separador de dados por linha
-        String[] temp = linha.split(";");
-        if (temp.length == 4) {
-            String id = temp[0].trim();
+   
+    private static int guardarDeputados(String linha, String[][] deputados, int nDeputados) {
+        /**
+         * O metodo guardarDeputados é o responsável por guardar 
+         * os dados lidos anteriormente de uma string 
+         * acumulando num vetor de dados temporários essa mesma string partida por  ;
+         * O vetor deputados guarda os dados recebidos do temporário
+         * Retorna o número de linhas gravadas correctamente  
+         */
+        
+        String[] dadostemporarios = linha.split(";");
+        
+        if (dadostemporarios.length == 4) {
+            String id = dadostemporarios[0].trim();
             if (id.length() == 5) {
                 deputados[nDeputados][0] = id;
-                deputados[nDeputados][1] = temp[1].trim();
-                deputados[nDeputados][2] = temp[2].trim();
-                deputados[nDeputados][3] = temp[3].trim();
+                deputados[nDeputados][1] = dadostemporarios[1].trim();
+                deputados[nDeputados][2] = dadostemporarios[2].trim();
+                deputados[nDeputados][3] = dadostemporarios[3].trim();
                 nDeputados++;
             } else {
                 System.out.println("Linha incorreta porque id incorreto");

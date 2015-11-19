@@ -122,18 +122,16 @@ public class Savop {
          * no vetor vazio recebido
          * Retorna o número de linhas lidas
          */
-        
-        Scanner lerficheiro = new Scanner(new File(FILE_DEPUTADOS));
         int nDeputados = 0;
-        while (lerficheiro.hasNext() && nDeputados < MAX_DEPUTADOS) {
-            String linha = in.nextLine();
+        Scanner lerfic = new Scanner(new File(FILE_DEPUTADOS));
+        while (lerfic.hasNext()&& nDeputados < MAX_DEPUTADOS) {
+            String linha = lerfic.nextLine();
             // teste para verificar a linha ignorando as linhas vazias
             if (linha.length()>0) {
                 nDeputados = guardarDeputados(linha, deputados, nDeputados);
             }
         }
-        lerficheiro.close();
-        continuar();
+        lerfic.close();
         return nDeputados;
     }
 

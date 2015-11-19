@@ -1,34 +1,34 @@
 VCT01;Abel Baptista;PartidoC;19820522
-BRA01;Ad„o Silva;PartidoG;19740122
+BRA01;Ad√£o Silva;PartidoG;19740122
 PRT01;Alberto Martins;PartidoF;19790209
 PRT02;Alexandre Quintanilha;PartidoF;19790210
-CST01;¡lvaro Batista;PartidoG;19770302
-PRT03;¡lvaro Castelo Branco;PartidoC;19790211
+CST01;√Ålvaro Batista;PartidoG;19770302
+PRT03;√Ålvaro Castelo Branco;PartidoC;19790211
 AVE01;Amadeu Soares Albergaria;PartidoG;19850116
-SET01;Ana Catarina MendonÁa Mendes;PartidoF;19820504
+SET01;Ana Catarina Mendon√ßa Mendes;PartidoF;19820504
 LIS01;Ana Mesquita;PartidoD;19710309
 COI01;Ana Oliveira;PartidoG;19811226
 PRT04;Ana Paula Vitorino;PartidoF;19790212
 LIS02;Ana Rita Bessa;PartidoC;19710310
 LIS03;Ana Sofia Bettencourt;PartidoG;19710311
-PRT05;Ana VirgÌnia Pereira;PartidoD;19790213
-LIS04;AndrÈ Silva;PartidoB;19710312
+PRT05;Ana Virg√≠nia Pereira;PartidoD;19790213
+LIS04;Andr√© Silva;PartidoB;19710312
 PRT06;Andreia Neto;PartidoG;19790214
-GUA01;¬ngela Guerra;PartidoG;19810824
-VIS01;AntÛnio Borges;PartidoF;19820528
-AVE02;AntÛnio Carlos Monteiro;PartidoC;19850117
-LIS05;AntÛnio Costa;PartidoF;19710313
-EVO01;AntÛnio Costa Silva;PartidoG;19770902
-FAR01;AntÛnio EusÈbio;PartidoF;19810813
-SAN01;AntÛnio Filipe;PartidoD;19860124
-SAN02;AntÛnio Gameiro;PartidoF;19860125
-VIS02;AntÛnio Leit„o Amaro;PartidoG;19820529
-VIS03;AntÛnio Lima Costa;PartidoG;19820530
-VCT02;AntÛnio Rodrigues;PartidoG;19820523
-LEI01;AntÛnio Sales;PartidoF;19810828
-AVE03;AntÛnio Topa;PartidoG;19850118
-ACO01;AntÛnio Ventura;PartidoG;19850111
-VLR01;Ascenso Simıes;PartidoF;19830208
+GUA01;√Çngela Guerra;PartidoG;19810824
+VIS01;Ant√≥nio Borges;PartidoF;19820528
+AVE02;Ant√≥nio Carlos Monteiro;PartidoC;19850117
+LIS05;Ant√≥nio Costa;PartidoF;19710313
+EVO01;Ant√≥nio Costa Silva;PartidoG;19770902
+FAR01;Ant√≥nio Eus√©bio;PartidoF;19810813
+SAN01;Ant√≥nio Filipe;PartidoD;19860124
+SAN02;Ant√≥nio Gameiro;PartidoF;19860125
+VIS02;Ant√≥nio Leit√£o Amaro;PartidoG;19820529
+VIS03;Ant√≥nio Lima Costa;PartidoG;19820530
+VCT02;Ant√≥nio Rodrigues;PartidoG;19820523
+LEI01;Ant√≥nio Sales;PartidoF;19810828
+AVE03;Ant√≥nio Topa;PartidoG;19850118
+ACO01;Ant√≥nio Ventura;PartidoG;19850111
+VLR01;Ascenso Sim√µes;PartidoF;19830208
 PRT07;Bacelar de Vasconcelos;PartidoF;19790215
 ACO02;Berta Cabral;PartidoG;19850112
 AVE04;Bruno Coimbra;PartidoG;19850119
@@ -38,23 +38,23 @@ EVO02;Capoulas Santos;PartidoF;19810811
 PRT08;Carla Barros;PartidoG;19790216
 BRG01;Carla Cruz;PartidoD;19740125
 VCT03;Carlos Abreu Amorim;PartidoG;19820524
-EUR01;Carlos Alberto GonÁalves;PartidoG;19770702
+EUR01;Carlos Alberto Gon√ßalves;PartidoG;19770702
 ACO03;Carlos Cesar;PartidoF;19850113
 SAN03;Carlos Matias;PartidoA;19860126
-FRE01;Carlos P·scoa GonÁalves;PartidoG;19810822
+FRE01;Carlos P√°scoa Gon√ßalves;PartidoG;19810822
 GUA02;Carlos Peixoto;PartidoG;19810825
 MAD01;Carlos Pereira;PartidoF;19830329
 LIS06;Carlos Silva;PartidoG;19710314
 SET04;Catarina Marcelino;PartidoF;19820507
 PRT09;Catarina Martins;PartidoA;19790217
-PRT10;CecÌlia Meireles;PartidoC;19790218
+PRT10;Cec√≠lia Meireles;PartidoC;19790218
 BRG02;Clara Marques Mendes;PartidoG;19740126
-PRT11;ConceiÁ„o Bessa Ru„o;PartidoG;19790219
-POR01;CristÛv„o Crespo;PartidoG;19790207
-FAR02;CristÛv„o Norte;PartidoG;19810814
-PRT12;CristÛv„o Sim„o Ribeiro;PartidoG;19790220
+PRT11;Concei√ß√£o Bessa Ru√£o;PartidoG;19790219
+POR01;Crist√≥v√£o Crespo;PartidoG;19790207
+FAR02;Crist√≥v√£o Norte;PartidoG;19810814
+PRT12;Crist√≥v√£o Sim√£o Ribeiro;PartidoG;19790220
 PRT13;Diana Ferreira;PartidoD;19790221
-LIS07;Diogo Le„o;PartidoF;19710315
+LIS07;Diogo Le√£o;PartidoF;19710315
 PRT14;Domicilia Costa;PartidoA;19790222
 BRG03;Domingos Pereira;PartidoF;19740127
 SAN04;Duarte Marques;PartidoG;19860127
@@ -63,130 +63,130 @@ LIS09;Edite Estrela;PartidoF;19710317
 SET05;Eduardo Cabrita;PartidoF;19820508
 LIS10;Eduardo Ferro Rodrigues;PartidoF;19710318
 COI02;Elza Pais;PartidoF;19811227
-VCT04;EmÌlia Cerqueira;PartidoG;19820525
-PRT15;EmÌlia Santos;PartidoG;19790223
+VCT04;Em√≠lia Cerqueira;PartidoG;19820525
+PRT15;Em√≠lia Santos;PartidoG;19790223
 CST02;Eurico Brilhante Dias;PartidoF;19770402
-SET06;EurÌdice Pereira;PartidoF;19820509
-COI03;F·tima Ramos;PartidoG;19811228
+SET06;Eur√≠dice Pereira;PartidoF;19820509
+COI03;F√°tima Ramos;PartidoG;19811228
 LEI02;Feliciano Barreiras Duarte;PartidoG;19810829
-FAR03;Fernando Anast·cio;PartidoF;19810815
+FAR03;Fernando Anast√°cio;PartidoF;19810815
 AVE05;Fernando Rocha Andrade;PartidoF;19850120
 LIS11;Filipe Anacoreta Correia;PartidoC;19710319
-LIS12;Filipe Lobo D' ¡vila;PartidoC;19710320
-AVE06;Filipe Neto Brand„o;PartidoF;19850121
+LIS12;Filipe Lobo D' √Åvila;PartidoC;19710320
+AVE06;Filipe Neto Brand√£o;PartidoF;19850121
 PRT16;Firmino Pereira;PartidoG;19790224
 SET07;Francisco Lopes;PartidoD;19820510
 PRT17;Francisco Mendes da Silva;PartidoC;19790225
 VLR02;Francisco Rocha;PartidoF;19830209
 PRT18;Gabriela Canavilhas;PartidoF;19860102
-LIS13;GraÁa Fonseca;PartidoF;19710321
+LIS13;Gra√ßa Fonseca;PartidoF;19710321
 LEI03;Heitor de Sousa;PartidoA;19710301
 VIS04;Helder Amaral;PartidoC;19830202
 COI04;Helena Freitas;PartidoF;19811229
 LIS14;Helena Roseta;PartidoF;19710322
 AVE07;Helga Correia;PartidoG;19850122
-SET08;HeloÌsa ApolÛnia;PartidoE;19820511
+SET08;Helo√≠sa Apol√≥nia;PartidoE;19820511
 CST03;Hortense Martins;PartidoF;19770502
 BRG04;Hugo Lopes Soares;PartidoG;19811210
 BRG05;Hugo Pires;PartidoF;19811211
-SAN05;Id·lia Salvador Serr„o;PartidoF;19860128
-SET09;InÍs de Medeiros;PartidoF;19820512
-VIS05;InÍs Domingos;PartidoG;19830203
+SAN05;Id√°lia Salvador Serr√£o;PartidoF;19860128
+SET09;In√™s de Medeiros;PartidoF;19820512
+VIS05;In√™s Domingos;PartidoG;19830203
 LIS15;Isabel Alves Moreira;PartidoF;19710323
-LIS16;Isabel GalriÁa Neto;PartidoC;19710324
+LIS16;Isabel Galri√ßa Neto;PartidoC;19710324
 PRT19;Isabel Oneto;PartidoF;19860103
 LIS17;Isabel Pires;PartidoA;19710325
 PRT20;Isabel Santos;PartidoF;19860104
 VIS06;Isaura Pedro;PartidoG;19830204
-LIS18;JerÛnimo de Sousa;PartidoD;19710326
+LIS18;Jer√≥nimo de Sousa;PartidoD;19710326
 LIS19;Joana Barata Lopes;PartidoG;19710327
-SET10;Joana Mort·gua;PartidoA;19820513
-ACO04;Jo„o Azevedo Castro;PartidoF;19850114
-COI05;Jo„o Galamba;PartidoF;19811230
-EVO03;Jo„o Oliveira;PartidoD;19810812
-PRT21;Jo„o Paulo Correia;PartidoF;19860105
-VIS07;Jo„o Paulo Rebelo;PartidoF;19830205
-BEJ01;Jo„o Ramos;PartidoD;19740119
-LIS20;Jo„o Rebelo;PartidoC;19710328
-LIS21;Jo„o Soares;PartidoF;19710329
-PRT22;Jo„o Torres;PartidoF;19860106
-FAR04;Jo„o Vasconcelos;PartidoA;19810816
+SET10;Joana Mort√°gua;PartidoA;19820513
+ACO04;Jo√£o Azevedo Castro;PartidoF;19850114
+COI05;Jo√£o Galamba;PartidoF;19811230
+EVO03;Jo√£o Oliveira;PartidoD;19810812
+PRT21;Jo√£o Paulo Correia;PartidoF;19860105
+VIS07;Jo√£o Paulo Rebelo;PartidoF;19830205
+BEJ01;Jo√£o Ramos;PartidoD;19740119
+LIS20;Jo√£o Rebelo;PartidoC;19710328
+LIS21;Jo√£o Soares;PartidoF;19710329
+PRT22;Jo√£o Torres;PartidoF;19860106
+FAR04;Jo√£o Vasconcelos;PartidoA;19810816
 BRG06;Joaquim Barreto;PartidoF;19811212
 LIS22;Joaquim Raposo;PartidoF;19830303
-BRG07;Joel S·;PartidoG;19811213
+BRG07;Joel S√°;PartidoG;19811213
 PRT23;Jorge Campos;PartidoA;19860107
 LIS23;Jorge Costa;PartidoA;19830304
-LIS24;Jorge Falcato Simıes;PartidoA;19830305
+LIS24;Jorge Falcato Sim√µes;PartidoA;19830305
 BRA02;Jorge Gomes;PartidoF;19740123
-LIS25;Jorge Lac„o;PartidoF;19830306
+LIS25;Jorge Lac√£o;PartidoF;19830306
 PRT24;Jorge Machado;PartidoD;19860108
 BRG08;Jorge Paulo Oliveira;PartidoG;19811214
-LEI04;JosÈ AntÛnio Silva;PartidoG;19710302
-FAR05;JosÈ Apolin·rio;PartidoF;19810817
-FAR06;JosÈ Carlos Barros;PartidoG;19810818
-LIS26;JosÈ de Matos Correia;PartidoG;19830307
-LIS27;JosÈ de Matos Rosa;PartidoG;19830308
-PRT25;JosÈ LuÌs Carneiro;PartidoF;19860109
-LIS28;JosÈ LuÌs Ferreira;PartidoE;19830309
-VCT05;JosÈ Manuel Carpinteira;PartidoF;19820526
-COI06;JosÈ Manuel Pureza;PartidoA;19811231
-LEI05;JosÈ Miguel Medeiros;PartidoF;19710303
-PRT26;JosÈ Moura Soeiro;PartidoA;19860110
-BRA03;JosÈ Silvano;PartidoG;19740124
+LEI04;Jos√© Ant√≥nio Silva;PartidoG;19710302
+FAR05;Jos√© Apolin√°rio;PartidoF;19810817
+FAR06;Jos√© Carlos Barros;PartidoG;19810818
+LIS26;Jos√© de Matos Correia;PartidoG;19830307
+LIS27;Jos√© de Matos Rosa;PartidoG;19830308
+PRT25;Jos√© Lu√≠s Carneiro;PartidoF;19860109
+LIS28;Jos√© Lu√≠s Ferreira;PartidoE;19830309
+VCT05;Jos√© Manuel Carpinteira;PartidoF;19820526
+COI06;Jos√© Manuel Pureza;PartidoA;19811231
+LEI05;Jos√© Miguel Medeiros;PartidoF;19710303
+PRT26;Jos√© Moura Soeiro;PartidoA;19860110
+BRA03;Jos√© Silvano;PartidoG;19740124
 ACO05;Lara Martinho;PartidoF;19850115
-BRG09;Laura Monteiro Magalh„es;PartidoG;19811215
+BRG09;Laura Monteiro Magalh√£es;PartidoG;19811215
 PRT27;Leonel Costa;PartidoG;19860111
-AVE08;LÌlia Ana ¡guas;PartidoC;19850123
-FAR07;LuÌs GraÁa;PartidoF;19810819
-VLR03;LuÌs Leite Ramos;PartidoG;19830210
-PRT28;LuÌs Monteiro;PartidoA;19860112
-AVE09;LuÌs Montenegro;PartidoG;19850124
-POR02;LuÌs Moreira Testa;PartidoF;19790208
-VLR04;LuÌs Pedro Pimentel;PartidoG;19830211
-BRG10;LuÌs Soares;PartidoF;19811216
-PRT29;LuÌs Vales;PartidoG;19860113
-MAD02;LuÌs Vilhena;PartidoF;19790202
-PRT30;LuÌsa Salgueiro;PartidoF;19860114
+AVE08;L√≠lia Ana √Åguas;PartidoC;19850123
+FAR07;Lu√≠s Gra√ßa;PartidoF;19810819
+VLR03;Lu√≠s Leite Ramos;PartidoG;19830210
+PRT28;Lu√≠s Monteiro;PartidoA;19860112
+AVE09;Lu√≠s Montenegro;PartidoG;19850124
+POR02;Lu√≠s Moreira Testa;PartidoF;19790208
+VLR04;Lu√≠s Pedro Pimentel;PartidoG;19830211
+BRG10;Lu√≠s Soares;PartidoF;19811216
+PRT29;Lu√≠s Vales;PartidoG;19860113
+MAD02;Lu√≠s Vilhena;PartidoF;19790202
+PRT30;Lu√≠sa Salgueiro;PartidoF;19860114
 BRG11;Manuel Caldeira Cabral;PartidoF;19811217
 CST04;Manuel Frexes;PartidoG;19770602
 LEI06;Manuel Isaac;PartidoC;19710304
-PRT31;Marco AntÛnio Costa;PartidoG;19860115
+PRT31;Marco Ant√≥nio Costa;PartidoG;19860115
 LIS29;Marcos Perestrello;PartidoF;19830310
 LEI07;Margarida Balseiro Lopes;PartidoG;19710305
 LEI08;Margarida Marques;PartidoF;19710306
-GUA03;Maria AntÛnia de Almeida Santos;PartidoF;19810826
+GUA03;Maria Ant√≥nia de Almeida Santos;PartidoF;19810826
 BRG12;Maria Augusta Santos;PartidoF;19811218
 BRG13;Maria Celeste Cardoso;PartidoG;19811219
-LEI09;Maria ConceiÁ„o Pereira;PartidoG;19710307
+LEI09;Maria Concei√ß√£o Pereira;PartidoG;19710307
 LIS30;Maria da Luz Rosinha;PartidoF;19830311
-SET11;Maria das MercÍs Borges;PartidoG;19820514
+SET11;Maria das Merc√™s Borges;PartidoG;19820514
 PRT32;Maria Germana Rocha;PartidoG;19860116
-FRE02;Maria Jo„o ¡vila;PartidoG;19810823
-VIS08;Maria Manuel Leit„o Marques;PartidoF;19830206
+FRE02;Maria Jo√£o √Åvila;PartidoG;19810823
+VIS08;Maria Manuel Leit√£o Marques;PartidoF;19830206
 VLR05;Maria Manuela Tender;PartidoG;19830212
-LIS31;Mariana Mort·gua;PartidoA;19830312
-LIS32;M·rio Centeno;PartidoF;19830313
-COI07;MaurÌcio Marques;PartidoG;19771002
+LIS31;Mariana Mort√°gua;PartidoA;19830312
+LIS32;M√°rio Centeno;PartidoF;19830313
+COI07;Maur√≠cio Marques;PartidoG;19771002
 PRT33;Miguel Morgado;PartidoG;19860117
 BRG14;Miguel Peixoto;PartidoG;19811220
 PRT34;Miguel Santos;PartidoG;19860118
 LIS33;Miguel Tiago;PartidoD;19830314
 LIS34;Miranda Calha;PartidoF;19830315
-AVE10;MoisÈs Ferreira;PartidoA;19850125
+AVE10;Mois√©s Ferreira;PartidoA;19850125
 BEJ02;Nilza de Sena;PartidoG;19740120
-COI08;Nuno EncarnaÁ„o;PartidoG;19770102
-SET12;Nuno Magalh„es;PartidoC;19820515
+COI08;Nuno Encarna√ß√£o;PartidoG;19770102
+SET12;Nuno Magalh√£es;PartidoC;19820515
 SAN06;Nuno Serra;PartidoG;19860129
 LIS35;Odete Silva;PartidoG;19830316
-SAN07;PatrÌcia Fonseca;PartidoC;19860130
+SAN07;Patr√≠cia Fonseca;PartidoC;19860130
 SET13;Paula Santos;PartidoD;19820516
 LIS36;Paula Teixeira da Cruz;PartidoG;19830317
-MAD03;Paulino AscenÁ„o;PartidoA;19790203
+MAD03;Paulino Ascen√ß√£o;PartidoA;19790203
 MAD04;Paulo Neves;PartidoG;19790204
 EUR02;Paulo Pisco;PartidoF;19770802
 PRT35;Paulo Rios de Oliveira;PartidoG;19860119
-FAR08;Paulo S·;PartidoD;19810820
-SET14;Paulo Simıes Ribeiro;PartidoG;19820517
+FAR08;Paulo S√°;PartidoD;19810820
+SET14;Paulo Sim√µes Ribeiro;PartidoG;19820517
 SET15;Paulo Trigo Pereira;PartidoF;19820518
 VIS09;Pedro Alves;PartidoG;19830207
 COI09;Pedro Coimbra;PartidoF;19770202
@@ -194,11 +194,11 @@ LIS37;Pedro Delgado Alves;PartidoF;19830318
 BEJ03;Pedro do Carmo;PartidoF;19740121
 LIS38;Pedro Filipe Soares;PartidoA;19830319
 AVE11;Pedro Nuno Santos;PartidoF;19740113
-LEI10;Pedro Pimp„o;PartidoG;19710308
+LEI10;Pedro Pimp√£o;PartidoG;19710308
 LIS39;Pedro Pinto;PartidoG;19830320
 LIS40;Pedro Roque;PartidoG;19830321
 BRG15;Pedro Soares;PartidoA;19811221
-AVE12;PorfÌrio Silva;PartidoF;19740114
+AVE12;Porf√≠rio Silva;PartidoF;19740114
 AVE13;Regina Bastos;PartidoG;19740115
 PRT36;Renato Sampaio;PartidoF;19860120
 LIS41;Ricardo Baptista Leite;PartidoG;19830322
@@ -212,10 +212,10 @@ SET17;Sandra Cunha;PartidoA;19820520
 LIS43;Sandra Pereira;PartidoG;19830324
 GUA04;Santinho Pacheco;PartidoF;19810827
 MAD06;Sara Madruga da Costa;PartidoG;19790206
-LIS44;SÈrgio Azevedo;PartidoG;19830325
-LIS45;SÈrgio Sousa Pinto;PartidoF;19830326
+LIS44;S√©rgio Azevedo;PartidoG;19830325
+LIS45;S√©rgio Sousa Pinto;PartidoF;19830326
 SET18;Sonia dos Reis;PartidoG;19820521
-BRG17;SÛnia Fertuzinhos;PartidoF;19811223
+BRG17;S√≥nia Fertuzinhos;PartidoF;19811223
 LIS46;Susana Amador;PartidoF;19830327
 AVE15;Susana Lamas;PartidoG;19740117
 BRG18;Telmo Correia;PartidoC;19811224
@@ -223,8 +223,9 @@ FAR09;Teresa Caeiro;PartidoC;19810821
 PRT38;Teresa Candeias;PartidoG;19860122
 SAN08;Teresa Leal Coelho;PartidoG;19820502
 PRT39;Tiago Barbosa Ribeiro;PartidoF;19860123
-VCT06;Tiago Brand„o Rodrigues;PartidoF;19820527
+VCT06;Tiago Brand√£o Rodrigues;PartidoF;19820527
 AVE16;Ulisses Pereira;PartidoG;19740118
-BRG19;V‚nia Dias da Silva;PartidoC;19811225
+BRG19;V√¢nia Dias da Silva;PartidoC;19811225
 SAN09;Vieira da Silva;PartidoF;19820503
 LIS47;Vitalino Canas;PartidoF;19830328
+

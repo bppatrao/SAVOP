@@ -29,8 +29,8 @@ public class Savop {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        int ndeputados=0;
-        char opcao;
+        int ndeputados = 0;
+        int opcao;
         String[][] deputados;
         deputados = new String[MAX_DEPUTADOS][4];
         //teste1
@@ -38,44 +38,44 @@ public class Savop {
         do {
             opcao = menu();
             switch (opcao) {
-                case '1':
-                    ndeputados=lerFicheiro(deputados);
+                case 1:
+                    ndeputados = lerFicheiro(deputados);
 
                     continuar();
                     break;
-                case '2':
+                case 2:
                     out.format("2");
 
                     continuar();
                     break;
-                case '3':
+                case 3:
                     out.format("3");
 
                     continuar();
                     break;
-                case '4':
+                case 4:
                     out.format("4");
 
                     continuar();
                     break;
-                case '5':
+                case 5:
                     out.format("5");
                     continuar();
                     break;
-                case '6':
+                case 6:
                     out.format("6");
                     continuar();
                     break;
-                case '7':
+                case 7:
                     out.format("7");
                     continuar();
                     break;
-                case '8':
+                case 8:
                     out.format("8");
                     continuar();
                     break;
                 default:
-                    if (opcao != '0') {
+                    if (opcao != 0) {
                         out.format("%n%s%n", "Opção Incorrecta.");
                     } else {
                         out.format("%n%s%n", "Saiu");
@@ -85,7 +85,7 @@ public class Savop {
 
             }
 
-        } while (opcao != '0');
+        } while (opcao != 0);
 
     }
 
@@ -94,9 +94,9 @@ public class Savop {
         in.nextLine();
     }
 
-    public static char menu() {
+    public static int menu() {
 
-        String texto = "\n#================================  MENU  ==================================#"
+        String menu = "\n#================================  MENU  ==================================#"
                 + "\n| Carregar Ficheiro de Texto sobre deputados para memória...........( 1 )..|"
                 + "\n| Visualizar toda a informação existente em memória.................( 2 )..|"
                 + "\n| Actualizar/Alterar informações sobre um deputado..................( 3 )..|"
@@ -107,27 +107,26 @@ public class Savop {
                 + "\n| Criar uma página HTML com a informação obtida no ponto 6..........( 8 )..|"
                 + "\n#..............................................................SAIR.( 0 )..#"
                 + "\nDigite a sua opção";
-        out.format("%n%s%n", texto);
-        String opcao = in.nextLine();
-        return opcao.charAt(0);
+        out.format("%n%s%n", menu);
+        int opcao = in.nextInt();
+        in.nextLine();
+        return opcao;
 
     }
 
-  
     private static int lerFicheiro(String[][] deputados) throws FileNotFoundException {
         /**
-         * O metodo lerFicheiro vai receber como parametro vetor vazio
-         * ler todos os dados do ficheiro deputados.txt
-         * Com a utilização do metodo guardarDadosDeputado guarda os dados
-         * no vetor vazio recebido
-         * Retorna o número de linhas lidas
+         * O metodo lerFicheiro vai receber como parametro vetor vazio ler todos
+         * os dados do ficheiro deputados.txt Com a utilização do metodo
+         * guardarDadosDeputado guarda os dados no vetor vazio recebido Retorna
+         * o número de linhas lidas
          */
         int nDeputados = 0;
         Scanner lerfic = new Scanner(new File(FILE_DEPUTADOS));
-        while (lerfic.hasNext()&& nDeputados < MAX_DEPUTADOS) {
+        while (lerfic.hasNext() && nDeputados < MAX_DEPUTADOS) {
             String linha = lerfic.nextLine();
             // teste para verificar a linha ignorando as linhas vazias
-            if (linha.length()>0) {
+            if (linha.length() > 0) {
                 nDeputados = guardarDeputados(linha, deputados, nDeputados);
             }
         }
@@ -135,18 +134,17 @@ public class Savop {
         return nDeputados;
     }
 
-   
     private static int guardarDeputados(String linha, String[][] deputados, int nDeputados) {
         /**
-         * O metodo guardarDeputados é o responsável por guardar 
-         * os dados lidos anteriormente de uma string 
-         * acumulando num vetor de dados temporários essa mesma string partida por  ;
-         * O vetor deputados guarda os dados recebidos do temporário
-         * Retorna o número de linhas gravadas correctamente  
+         * O metodo guardarDeputados é o responsável por guardar os dados lidos
+         * anteriormente de uma string acumulando num vetor de dados temporários
+         * essa mesma string partida por ; O vetor deputados guarda os dados
+         * recebidos do temporário Retorna o número de linhas gravadas
+         * correctamente
          */
-        
+
         String[] dadostemporarios = linha.split(";");
-        
+
         if (dadostemporarios.length == 4) {
             String id = dadostemporarios[0].trim();
             if (id.length() == 5) {
@@ -162,5 +160,73 @@ public class Savop {
             System.out.println("Linha incorreta porque o nº de campos incorreto");
         }
         return nDeputados;
+    }
+
+    public static int procurarDeputados(String[][] deputados, String id) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (i < deputados.length && !encontrado) {
+            if (id.equals(deputados[i][0])) {
+                encontrado = true;
+            } else {
+                i++;
+            }
+        }
+        if (encontrado == true) {
+            out.format("%s%n", "Deputado Encontrado");
+            return i;
+        } else {
+            return -1;
+        }
+    }
+
+    private static boolean alteraDadosDeputado(String[][] deputados, String id, int nDeputados) {
+        int posicao = procurarDeputados(deputados, id), opcao;
+        if (posicao != -1) {
+            do {
+                opcao = menuAlterarDadosDeputado(deputados[posicao]);
+                switch (opcao) {
+                    case 1:
+                        out.format("Novo Nome:");
+                        deputados[posicao][1] = in.nextLine();
+                        break;
+                    case 2:
+                        out.format("Novo partido:");
+                        deputados[posicao][2] = in.nextLine();
+                        break;
+                    case 3:
+                        out.format("Alterar Data de nascimento");
+                        deputados[posicao][3] = in.nextLine();
+                        break;
+                    default:
+                        if (opcao != 0) {
+                            out.format("%n%s%n", "Opção Incorrecta.");
+                        } else {
+                            out.format("%n%s%n", "Saiu");
+                        }
+                        continuar();
+                        break;
+                }
+            } while (opcao != 0);
+        } else {
+            System.out.printf("O deputado %s não foi encontrado!", id);
+            return false;
+        }
+        return true;
+    }
+
+    private static int menuAlterarDadosDeputado(String[] deputados) {
+
+        String menu = "\n#================================  MENU  ==================================#"
+                + "\n| Alterar Nome do Deputado..........................................( 1 )..|"
+                + "\n| Alterar Partido do Deputado.......................................( 2 )..|"
+                + "\n| Alterar Data de nascimento do Deputado............................( 3 )..|"
+                + "\n#..............................................................SAIR.( 0 )..#"
+                + "\nDigite a sua opção";
+        out.format("%n%s%n", menu);
+        int opcao = in.nextInt();
+        in.nextLine();
+        return opcao;
     }
 }

@@ -170,27 +170,10 @@ public class Savop {
         return nDeputados;
     }
 
-    public static int procurarDeputados(String[][] deputados, String id) {
-        int i = 0;
-        boolean encontrado = false;
 
-        while (i < deputados.length && !encontrado) {
-            if (id.equals(deputados[i][0])) {
-                encontrado = true;
-            } else {
-                i++;
-            }
-        }
-        if (encontrado == true) {
-            out.format("%s%n", "Deputado Encontrado");
-            return i;
-        } else {
-            return -1;
-        }
-    }
 
     private static boolean alteraDadosDeputado(String[][] deputados, String id) {
-        int posicao = procurarDeputados(deputados, id), opcao;
+        int posicao = Utilitarios.procurarDeputados(deputados, id), opcao;
         if (posicao != -1) {
             do {
                 opcao = menuAlterarDadosDeputado(deputados[posicao]);

@@ -9,8 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.Formatter;
 import java.util.Scanner;
-import java.util.regex.Matcher;  
-import java.util.regex.Pattern;
+
 
 /**
  *
@@ -31,11 +30,13 @@ public class Savop {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        int ndeputados = 0,opcao;
-        String id;
+        int ndeputados = 0,opcao,nvotacoes=0;
         boolean valida=false;
+        String id,assuntovotado;
         String[][] deputados;
+        char [] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
+        votacoes = new char[MAX_DEPUTADOS];
         //teste1
 
         do {
@@ -64,7 +65,10 @@ public class Savop {
                     continuar();
                     break;
                 case 4:
-                    out.format("4");
+                    out.format("Digite o assunto votado, correspondente ao nome do ficheiro a ler:");
+                    assuntovotado=in.nextLine();
+                    in.nextLine();
+                    nvotacoes=carregarVotacoes(deputados,assuntovotado,votacoes);
 
                     continuar();
                     break;
@@ -122,6 +126,16 @@ public class Savop {
         in.nextLine();
         return opcao;
 
+    }
+    
+    public static int carregarVotacoes(String [][] deputados, String assuntovotado, char[] votacoes){
+        /**
+         * O metodo lerFicheiro vai receber como parametro vetor vazio ler todos
+         * os dados do ficheiro deputados.txt Com a utilização do metodo
+         * guardarDadosDeputado guarda os dados no vetor vazio recebido Retorna
+         * o número de linhas lidas
+         */
+        Scanner lerfic = new Scanner
     }
 
     private static int lerFicheiro(String[][] deputados) throws FileNotFoundException {

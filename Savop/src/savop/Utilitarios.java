@@ -117,4 +117,14 @@ public class Utilitarios {
 
         }
     }
+
+    public static int limpaVotacoes(char[] votacoes) {
+        char F = 'F';
+        for (int i = 0; i < votacoes.length; i++) {
+            votacoes[i] = F;
+        }
+        return i;
+
+    }
+
 }

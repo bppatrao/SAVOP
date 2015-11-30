@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.Formatter;
 import java.util.Scanner;
-
+import static savop.Utilitarios.procurarDeputados;
 
 /**
  *
@@ -30,11 +30,11 @@ public class Savop {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        int ndeputados = 0,opcao,nvotacoes=0;
-        boolean valida=false;
-        String id,assuntovotado;
+        int ndeputados = 0, opcao, nvotacoes = 0;
+        boolean valida = false;
+        String id, assuntovotado;
         String[][] deputados;
-        char [] votacoes;
+        char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
         votacoes = new char[MAX_DEPUTADOS];
         //teste1
@@ -54,21 +54,21 @@ public class Savop {
                     break;
                 case 3:
                     out.format("Digite o ID do Deputado do qual pretende alterar os dados:");
-                    id=in.nextLine();
+                    id = in.nextLine();
                     in.nextLine();
-                    valida=alteraDadosDeputado(deputados,id);
-                    if (valida=true){
+                    valida = alteraDadosDeputado(deputados, id);
+                    if (valida = true) {
                         out.format("Deputado alterado com sucesso");
-                    }else{
+                    } else {
                         out.format("Deputado não alterado");
                     }
                     continuar();
                     break;
                 case 4:
                     out.format("Digite o assunto votado, correspondente ao nome do ficheiro a ler:");
-                    assuntovotado=in.nextLine();
+                    assuntovotado = in.nextLine();
                     in.nextLine();
-                    nvotacoes=carregarVotacoes(deputados,assuntovotado,votacoes);
+                    nvotacoes = carregarVotacoes(deputados, assuntovotado, votacoes);
 
                     continuar();
                     break;
@@ -127,15 +127,36 @@ public class Savop {
         return opcao;
 
     }
-    
-    public static int carregarVotacoes(String [][] deputados, String assuntovotado, char[] votacoes){
+
+    public static int carregarVotacoes(String[][] deputados, String assuntovotado, char[] votacoes) throws FileNotFoundException {
         /**
          * O metodo lerFicheiro vai receber como parametro vetor vazio ler todos
          * os dados do ficheiro deputados.txt Com a utilização do metodo
          * guardarDadosDeputado guarda os dados no vetor vazio recebido Retorna
          * o número de linhas lidas
          */
-        Scanner lerfic = new Scanner
+        int nvotacoes = 0, pos = 0, validalimpezavotacoes=0;
+        String id;
+        char votacao;
+        validalimpezavotacoes = Utilitarios.limpaVotacoes(votacoes);
+        Scanner lerfic = new Scanner(new File(assuntovotado + ".txt"));
+        while (lerfic.hasNext() && nvotacoes < MAX_DEPUTADOS) {
+            String linha = lerfic.nextLine();
+            if (linha.length() > 0) {
+                linha = linha.trim();
+                id = linha.substring(0, 5);
+                pos = procurarDeputados(deputados, id);
+                if (pos != -1) {
+                    votacao=linha.charAt(6);
+                    votacoes[pos]=votacao;
+                    nvotacoes++;
+                } else {
+                    out.format("Erro");
+                }
+            }
+
+        }
+        return nvotacoes;
     }
 
     private static int lerFicheiro(String[][] deputados) throws FileNotFoundException {
@@ -186,8 +207,6 @@ public class Savop {
         return nDeputados;
     }
 
-
-
     private static boolean alteraDadosDeputado(String[][] deputados, String id) {
         int posicao = Utilitarios.procurarDeputados(deputados, id), opcao;
         if (posicao != -1) {
@@ -224,8 +243,8 @@ public class Savop {
     }
 
     private static int menuAlterarDadosDeputado(String[] deputados) {
-        out.format("%6s-%30s-%7s-%12s%n",deputados[0], deputados[1], deputados[2], deputados[3]);
-        
+        out.format("%6s-%30s-%7s-%12s%n", deputados[0], deputados[1], deputados[2], deputados[3]);
+
         String menu = "\n#================================  MENU  ==================================#"
                 + "\n| Alterar Nome do Deputado..........................................( 1 )..|"
                 + "\n| Alterar Partido do Deputado.......................................( 2 )..|"

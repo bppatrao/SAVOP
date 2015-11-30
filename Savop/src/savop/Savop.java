@@ -127,6 +127,22 @@ public class Savop {
         return opcao;
 
     }
+    private static void listaDeputadosvotacoes(String[][] auxdeputadosvotacoes) {
+        int contPaginas = 0;
+        for (int i = 0; i < auxdeputadosvotacoes.length; i++) {
+            if (i % MAX_LINHAS_PAGINA == 0) {
+                if (contPaginas > 0) {
+                    Utilitarios.pausa();
+                }
+                contPaginas++;
+                System.out.println("\nPÁGINA: " + contPaginas);
+                Utilitarios.cabecalho();
+            }
+            System.out.printf("%-6s||%-30s||%-10s||%-12s%n", auxdeputadosvotacoes[i][0],
+                    auxdeputadosvotacoes[i][1], auxdeputadosvotacoes[i][2], auxdeputadosvotacoes[i][3]);
+        }
+    }
+    
 
     private static void listaDeputados(String[][] deputados, int ndeputados) {
         int contPaginas = 0;

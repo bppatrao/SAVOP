@@ -140,5 +140,22 @@ public class Utilitarios {
         System.out.println("\n\nPara continuar digite ENTER\n");
         in.nextLine();
     }
+    
+    public static String [][] listagemDeputadosVotacoes(char[] votacoes, String [][] Deputados, int ndeputados){
+        int i=0,votacoesencontradas=0;
+        String [][] auxdeputadosvotacoes;
+        auxdeputadosvotacoes = new String [ndeputados][4];
+        for (i=0; i<votacoes.length;i++){
+            if(votacoes[i] != 'F'){
+                auxdeputadosvotacoes[votacoesencontradas][1] = Deputados[i][1];
+                auxdeputadosvotacoes[votacoesencontradas][2] = Deputados[i][2];
+                auxdeputadosvotacoes[votacoesencontradas][3] = Deputados[i][3];
+                auxdeputadosvotacoes[votacoesencontradas][4] = String.valueOf(votacoes[i]);              
+                votacoesencontradas++;
+            }
+            
+        }
+        return auxdeputadosvotacoes;
+    }
 
 }

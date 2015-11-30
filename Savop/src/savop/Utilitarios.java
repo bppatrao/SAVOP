@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import static savop.Savop.in;
 import static savop.Savop.out;
 
 /**
@@ -126,6 +127,18 @@ public class Utilitarios {
         }
         return i;
 
+    }
+
+    public static void cabecalho() {
+        System.out.printf("%-6s||%-30s||%-10s||%-12s%n", "ID", "NOME",
+                "PARTIDO", "DATA NASC");
+        System.out.println(
+                "==========================…=======================");
+    }
+
+    public static void pausa() {
+        System.out.println("\n\nPara continuar digite ENTER\n");
+        in.nextLine();
     }
 
 }

@@ -48,7 +48,7 @@ public class Savop {
                     continuar();
                     break;
                 case 2:
-                    out.format("2");
+                    listaDeputados(deputados,ndeputados);
 
                     continuar();
                     break;
@@ -117,7 +117,7 @@ public class Savop {
                 + "\n| Carregar Ficheiro de Texto sobre uma determinado votação..........( 4 )..|"
                 + "\n| Visualizar a informação dos deputados devidamente ordenada........( 5 )..|"
                 + "\n| Visualizar no ecrã os resultados da última votação introduzida....( 6 )..|"
-                + "\n| Visualizar votação os resultados obtidos em função dafaixa etária.( 7 )..|"
+                + "\n| Visualizar votação os resultados obtidos em função da faixa etária( 7 )..|"
                 + "\n| Criar uma página HTML com a informação obtida no ponto 6..........( 8 )..|"
                 + "\n#..............................................................SAIR.( 0 )..#"
                 + "\nDigite a sua opção";
@@ -128,6 +128,22 @@ public class Savop {
 
     }
 
+    private static void listaDeputados(String[][] deputados, int ndeputados) {
+        int contPaginas = 0;
+        for (int i = 0; i < ndeputados; i++) {
+            if (i % MAX_LINHAS_PAGINA == 0) {
+                if (contPaginas > 0) {
+                    Utilitarios.pausa();
+                }
+                contPaginas++;
+                System.out.println("\nPÁGINA: " + contPaginas);
+                Utilitarios.cabecalho();
+            }
+            System.out.printf("%-6s||%-30s||%-10s||%-12s%n", deputados[i][0],
+                    deputados[i][1], deputados[i][2], deputados[i][3]);
+        }
+    }
+
     public static int carregarVotacoes(String[][] deputados, String assuntovotado, char[] votacoes) throws FileNotFoundException {
         /**
          * O metodo lerFicheiro vai receber como parametro vetor vazio ler todos
@@ -135,7 +151,7 @@ public class Savop {
          * guardarDadosDeputado guarda os dados no vetor vazio recebido Retorna
          * o número de linhas lidas
          */
-        int nvotacoes = 0, pos = 0, validalimpezavotacoes=0;
+        int nvotacoes = 0, pos = 0, validalimpezavotacoes = 0;
         String id;
         char votacao;
         validalimpezavotacoes = Utilitarios.limpaVotacoes(votacoes);
@@ -147,8 +163,8 @@ public class Savop {
                 id = linha.substring(0, 5);
                 pos = procurarDeputados(deputados, id);
                 if (pos != -1) {
-                    votacao=linha.charAt(6);
-                    votacoes[pos]=votacao;
+                    votacao = linha.charAt(6);
+                    votacoes[pos] = votacao;
                     nvotacoes++;
                 } else {
                     out.format("Erro");

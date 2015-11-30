@@ -34,6 +34,7 @@ public class Savop {
         boolean valida = false;
         String id, assuntovotado;
         String[][] deputados;
+        String[][] auxdeputadosvotacoes;
         char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
         votacoes = new char[MAX_DEPUTADOS];
@@ -48,7 +49,7 @@ public class Savop {
                     continuar();
                     break;
                 case 2:
-                    listaDeputados(deputados,ndeputados);
+                    listaDeputados(deputados, ndeputados);
 
                     continuar();
                     break;
@@ -73,7 +74,8 @@ public class Savop {
                     continuar();
                     break;
                 case 5:
-                    out.format("5");
+                    auxdeputadosvotacoes=Utilitarios.listagemDeputadosVotacoes(votacoes,deputados,ndeputados);
+                    listaDeputadosvotacoes(auxdeputadosvotacoes);
                     continuar();
                     break;
                 case 6:
@@ -127,6 +129,7 @@ public class Savop {
         return opcao;
 
     }
+
     private static void listaDeputadosvotacoes(String[][] auxdeputadosvotacoes) {
         int contPaginas = 0;
         for (int i = 0; i < auxdeputadosvotacoes.length; i++) {
@@ -142,7 +145,6 @@ public class Savop {
                     auxdeputadosvotacoes[i][1], auxdeputadosvotacoes[i][2], auxdeputadosvotacoes[i][3]);
         }
     }
-    
 
     private static void listaDeputados(String[][] deputados, int ndeputados) {
         int contPaginas = 0;

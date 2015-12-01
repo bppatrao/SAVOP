@@ -41,6 +41,7 @@ public class Savop {
         //teste1
 
         do {
+
             opcao = menu();
             switch (opcao) {
                 case 1:
@@ -177,12 +178,12 @@ public class Savop {
         Scanner lerfic = new Scanner(new File(filevotacoes));
         while (lerfic.hasNext() && nvotacoes < MAX_DEPUTADOS) {
             String linha = lerfic.nextLine();
+            linha = linha.trim();
             if (linha.length() > 0) {
-                linha = linha.trim();
                 id = linha.substring(0, 5);
                 pos = procurarDeputados(deputados, id);
                 if (pos != -1) {
-                    votacao = linha.charAt(6);
+                    votacao = linha.charAt(5);
                     votacoes[pos] = votacao;
                     nvotacoes++;
                 } else {

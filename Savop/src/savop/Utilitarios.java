@@ -132,7 +132,7 @@ public class Utilitarios {
         System.out.printf("%-6s||%-30s||%-10s||%-6s%n", "ID", "NOME",
                 "PARTIDO", "VOT");
         System.out.println(
-                "==========================…=======================");
+                "#=======================  Listagem Votações  =========================#");
     }
 
 
@@ -140,7 +140,7 @@ public class Utilitarios {
         System.out.printf("%-6s||%-30s||%-10s||%-12s%n", "ID", "NOME",
                 "PARTIDO", "DATA NASC");
         System.out.println(
-                "==========================…=======================");
+                "#==========================  Deputados  =============================#");
     }
 
     public static void continuar() {

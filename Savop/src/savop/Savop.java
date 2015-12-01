@@ -30,13 +30,14 @@ public class Savop {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        int ndeputados = 0, opcao, nvotacoes = 0;
+        int ndeputados = 0, opcao, nvotacoes = 0, auxnvotacoes=0;
         boolean valida = false;
         String id, assuntovotado;
         String[][] deputados;
-        String[][] auxdeputadosvotacoes;
+        String[][] deputadosvotacoes;
         char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
+        deputadosvotacoes = new String [MAX_DEPUTADOS][4];
         votacoes = new char[MAX_DEPUTADOS];
         //teste1
 
@@ -47,12 +48,12 @@ public class Savop {
                 case 1:
                     ndeputados = lerFicheiro(deputados);
 
-                    continuar();
+                    Utilitarios.continuar();
                     break;
                 case 2:
                     listaDeputados(deputados, ndeputados);
 
-                    continuar();
+                    Utilitarios.continuar();
                     break;
                 case 3:
                     out.format("Digite o ID do Deputado do qual pretende alterar os dados:");
@@ -64,7 +65,7 @@ public class Savop {
                     } else {
                         out.format("Deputado não alterado");
                     }
-                    continuar();
+                    Utilitarios.continuar();
                     break;
                 case 4:
                     out.format("Digite o assunto votado, correspondente ao nome do ficheiro a ler:");
@@ -72,24 +73,24 @@ public class Savop {
                     in.nextLine();
                     nvotacoes = carregarVotacoes(deputados, assuntovotado, votacoes);
 
-                    continuar();
+                    Utilitarios.continuar();
                     break;
                 case 5:
-                    auxdeputadosvotacoes=Utilitarios.listagemDeputadosVotacoes(votacoes,deputados,ndeputados);
-                    listaDeputadosvotacoes(auxdeputadosvotacoes);
-                    continuar();
+                    auxnvotacoes=Utilitarios.deputadosVotacoes(votacoes,deputados,deputadosvotacoes,ndeputados);
+                    listaDeputadosvotacoes(deputadosvotacoes,auxnvotacoes);
+                    Utilitarios.continuar();
                     break;
                 case 6:
                     out.format("6");
-                    continuar();
+                    Utilitarios.continuar();
                     break;
                 case 7:
                     out.format("7");
-                    continuar();
+                    Utilitarios.continuar();
                     break;
                 case 8:
                     out.format("8");
-                    continuar();
+                    Utilitarios.continuar();
                     break;
                 default:
                     if (opcao != 0) {
@@ -97,7 +98,7 @@ public class Savop {
                     } else {
                         out.format("%n%s%n", "Saiu");
                     }
-                    continuar();
+                    Utilitarios.continuar();
                     break;
 
             }
@@ -106,10 +107,6 @@ public class Savop {
 
     }
 
-    public static void continuar() {
-        out.format("%n%s%n", "Para continuar digite (char Enter)");
-        in.nextLine();
-    }
 
     public static int menu() {
 
@@ -131,16 +128,16 @@ public class Savop {
 
     }
 
-    private static void listaDeputadosvotacoes(String[][] auxdeputadosvotacoes) {
+    private static void listaDeputadosvotacoes(String[][] auxdeputadosvotacoes, int auxnvotacoes) {
         int contPaginas = 0;
-        for (int i = 0; i < auxdeputadosvotacoes.length; i++) {
+        for (int i = 0; i < auxnvotacoes; i++) {
             if (i % MAX_LINHAS_PAGINA == 0) {
                 if (contPaginas > 0) {
-                    Utilitarios.pausa();
+                    Utilitarios.continuar();
                 }
                 contPaginas++;
                 System.out.println("\nPÁGINA: " + contPaginas);
-                Utilitarios.cabecalho();
+                Utilitarios.cabecalholistavotacoes();
             }
             System.out.printf("%-6s||%-30s||%-10s||%-12s%n", auxdeputadosvotacoes[i][0],
                     auxdeputadosvotacoes[i][1], auxdeputadosvotacoes[i][2], auxdeputadosvotacoes[i][3]);
@@ -152,7 +149,7 @@ public class Savop {
         for (int i = 0; i < ndeputados; i++) {
             if (i % MAX_LINHAS_PAGINA == 0) {
                 if (contPaginas > 0) {
-                    Utilitarios.pausa();
+                    Utilitarios.continuar();
                 }
                 contPaginas++;
                 System.out.println("\nPÁGINA: " + contPaginas);
@@ -267,7 +264,7 @@ public class Savop {
                         } else {
                             out.format("%n%s%n", "Saiu");
                         }
-                        continuar();
+                        Utilitarios.continuar();
                         break;
                 }
             } while (opcao != 0);

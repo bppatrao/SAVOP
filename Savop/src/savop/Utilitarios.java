@@ -128,6 +128,13 @@ public class Utilitarios {
         return i;
 
     }
+    public static void cabecalholistavotacoes() {
+        System.out.printf("%-30s||%-10s||%-12s||%-6s%n", "NOME", "PARTIDO",
+                "DATA NASC", "VOT");
+        System.out.println(
+                "==========================…=======================");
+    }
+
 
     public static void cabecalho() {
         System.out.printf("%-6s||%-30s||%-10s||%-12s%n", "ID", "NOME",
@@ -136,26 +143,24 @@ public class Utilitarios {
                 "==========================…=======================");
     }
 
-    public static void pausa() {
-        System.out.println("\n\nPara continuar digite ENTER\n");
+    public static void continuar() {
+        out.format("%n%s%n", "Para continuar digite (char Enter)");
         in.nextLine();
     }
     
-    public static String [][] listagemDeputadosVotacoes(char[] votacoes, String [][] Deputados, int ndeputados){
+    public static int deputadosVotacoes(char[] votacoes, String [][] Deputados, String [][] deputadosvotacoes, int ndeputados){
         int i=0,votacoesencontradas=0;
-        String [][] auxdeputadosvotacoes;
-        auxdeputadosvotacoes = new String [ndeputados][4];
         for (i=0; i<votacoes.length;i++){
             if(votacoes[i] != 'F'){
-                auxdeputadosvotacoes[votacoesencontradas][1] = Deputados[i][1];
-                auxdeputadosvotacoes[votacoesencontradas][2] = Deputados[i][2];
-                auxdeputadosvotacoes[votacoesencontradas][3] = Deputados[i][3];
-                auxdeputadosvotacoes[votacoesencontradas][4] = String.valueOf(votacoes[i]);              
+                deputadosvotacoes[votacoesencontradas][0] = Deputados[i][1];
+                deputadosvotacoes[votacoesencontradas][1] = Deputados[i][2];
+                deputadosvotacoes[votacoesencontradas][2] = Deputados[i][3];
+                deputadosvotacoes[votacoesencontradas][3] = String.valueOf(votacoes[i]);              
                 votacoesencontradas++;
             }
             
         }
-        return auxdeputadosvotacoes;
+        return votacoesencontradas;
     }
 
 }

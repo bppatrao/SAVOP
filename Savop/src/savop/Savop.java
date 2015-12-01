@@ -128,7 +128,7 @@ public class Savop {
 
     }
 
-    private static void listaDeputadosvotacoes(String[][] auxdeputadosvotacoes, int auxnvotacoes) {
+    private static void listaDeputadosvotacoes(String[][] deputadosvotacoes, int auxnvotacoes) {
         int contPaginas = 0;
         for (int i = 0; i < auxnvotacoes; i++) {
             if (i % MAX_LINHAS_PAGINA == 0) {
@@ -139,8 +139,8 @@ public class Savop {
                 System.out.println("\nPÁGINA: " + contPaginas);
                 Utilitarios.cabecalholistavotacoes();
             }
-            System.out.printf("%-6s||%-30s||%-10s||%-12s%n", auxdeputadosvotacoes[i][0],
-                    auxdeputadosvotacoes[i][1], auxdeputadosvotacoes[i][2], auxdeputadosvotacoes[i][3]);
+            System.out.printf("%-30s||%-10s||%-12s||%-16s%n", deputadosvotacoes[i][0],
+                    deputadosvotacoes[i][1], deputadosvotacoes[i][2], deputadosvotacoes[i][3]);
         }
     }
 

@@ -139,7 +139,7 @@ public class Savop {
                 System.out.println("\nPÁGINA: " + contPaginas);
                 Utilitarios.cabecalholistavotacoes();
             }
-            System.out.printf("%-30s||%-10s||%-12s||%-16s%n", deputadosvotacoes[i][0],
+            System.out.printf("%-6s||%-30s||%-10s||%-6s%n", deputadosvotacoes[i][0],
                     deputadosvotacoes[i][1], deputadosvotacoes[i][2], deputadosvotacoes[i][3]);
         }
     }

@@ -129,8 +129,8 @@ public class Utilitarios {
 
     }
     public static void cabecalholistavotacoes() {
-        System.out.printf("%-30s||%-10s||%-12s||%-6s%n", "NOME", "PARTIDO",
-                "DATA NASC", "VOT");
+        System.out.printf("%-6s||%-30s||%-10s||%-6s%n", "ID", "NOME",
+                "PARTIDO", "VOT");
         System.out.println(
                 "==========================…=======================");
     }
@@ -148,19 +148,31 @@ public class Utilitarios {
         in.nextLine();
     }
     
-    public static int deputadosVotacoes(char[] votacoes, String [][] Deputados, String [][] deputadosvotacoes, int ndeputados){
+    public static int deputadosVotacoes(char[] votacoes, String [][] deputados, String [][] deputadosvotacoes, int ndeputados){
         int i=0,votacoesencontradas=0;
         for (i=0; i<votacoes.length;i++){
             if(votacoes[i] != 'F'){
-                deputadosvotacoes[votacoesencontradas][0] = Deputados[i][1];
-                deputadosvotacoes[votacoesencontradas][1] = Deputados[i][2];
-                deputadosvotacoes[votacoesencontradas][2] = Deputados[i][3];
+                deputadosvotacoes[votacoesencontradas][0] = deputados[i][0];
+                deputadosvotacoes[votacoesencontradas][1] = deputados[i][1];
+                deputadosvotacoes[votacoesencontradas][2] = deputados[i][2];
                 deputadosvotacoes[votacoesencontradas][3] = String.valueOf(votacoes[i]);              
                 votacoesencontradas++;
             }
             
         }
         return votacoesencontradas;
+    }
+    public static void ordenarDeputadosVotacoes(String [][]deputadosvotacoes){
+        for(int i=0; i<deputadosvotacoes.length-1;i++){
+            for(int j=i+1;j<deputadosvotacoes.length;j++){
+                if(deputadosvotacoes[i][0].compareTo(deputadosvotacoes[j][0])>0){
+                    String [] tmp=deputadosvotacoes[i];
+                    deputadosvotacoes[i]=deputadosvotacoes[j];
+                    deputadosvotacoes[j]=tmp;
+                                        
+                }
+            }
+        }
     }
 
 }

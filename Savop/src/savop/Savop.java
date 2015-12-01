@@ -170,10 +170,11 @@ public class Savop {
          * o número de linhas lidas
          */
         int nvotacoes = 0, pos = 0, validalimpezavotacoes = 0;
-        String id;
+        String id,filevotacoes;
         char votacao;
+        filevotacoes = assuntovotado+".txt";
         validalimpezavotacoes = Utilitarios.limpaVotacoes(votacoes);
-        Scanner lerfic = new Scanner(new File(assuntovotado + ".txt"));
+        Scanner lerfic = new Scanner(new File(filevotacoes));
         while (lerfic.hasNext() && nvotacoes < MAX_DEPUTADOS) {
             String linha = lerfic.nextLine();
             if (linha.length() > 0) {
@@ -185,7 +186,7 @@ public class Savop {
                     votacoes[pos] = votacao;
                     nvotacoes++;
                 } else {
-                    out.format("Erro");
+                    //out.format("Erro");
                 }
             }
 

@@ -30,7 +30,7 @@ public class Savop {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        int ndeputados = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
+        int ndeputados = 0,npartidos=0, opcao, nvotacoes = 0, auxnvotacoes = 0;
         boolean valida = false;
         String id, assuntovotado;
         String[][] deputados;
@@ -49,6 +49,7 @@ public class Savop {
             switch (opcao) {
                 case 1:
                     ndeputados = lerFicheiro(deputados);
+                    npartidos=partidos(deputados,ndeputados,partidos);
 
                     Utilitarios.continuar();
                     break;
@@ -131,23 +132,22 @@ public class Savop {
 
     private static int partidos(String[][] deputados, int ndeputados, String[] partidos) {
         String partidodeputado, partido;
-        int partidosencontrados = 0, auxcont;
+        int npartidos = 0, auxcont;
         for (int i = 0; i < ndeputados; i++) {
             auxcont = 0;
             partidodeputado = deputados[i][2];
-            for (int j = 0; j < partidosencontrados; j++) {
+            for (int j = 0; j < npartidos; j++) {
                 partido = partidos[j];
                 if (partidodeputado.equalsIgnoreCase(partido)) {
                     auxcont++;
                 }
-
             }
             if (auxcont == 0) {
-                partidos[partidosencontrados] = partidodeputado;
-                partidosencontrados++;
+                partidos[npartidos] = partidodeputado;
+                npartidos++;
             }
         }
-        return partidosencontrados;
+        return npartidos;
     }
 
     private static void listaDeputadosvotacoes(String[][] deputadosvotacoes, int auxnvotacoes) {

@@ -30,15 +30,17 @@ public class Savop {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        int ndeputados = 0, opcao, nvotacoes = 0, auxnvotacoes=0;
+        int ndeputados = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
         boolean valida = false;
         String id, assuntovotado;
         String[][] deputados;
         String[][] deputadosvotacoes;
+        String[] partidos;
         char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
-        deputadosvotacoes = new String [MAX_DEPUTADOS][4];
+        deputadosvotacoes = new String[MAX_DEPUTADOS][4];
         votacoes = new char[MAX_DEPUTADOS];
+        partidos = new String[MAX_DEPUTADOS];
         //teste1
 
         do {
@@ -76,8 +78,8 @@ public class Savop {
                     Utilitarios.continuar();
                     break;
                 case 5:
-                    auxnvotacoes=Utilitarios.deputadosVotacoes(votacoes,deputados,deputadosvotacoes,ndeputados);
-                    listaDeputadosvotacoes(deputadosvotacoes,auxnvotacoes);
+                    auxnvotacoes = Utilitarios.deputadosVotacoes(votacoes, deputados, deputadosvotacoes, ndeputados);
+                    listaDeputadosvotacoes(deputadosvotacoes, auxnvotacoes);
                     Utilitarios.continuar();
                     break;
                 case 6:
@@ -107,7 +109,6 @@ public class Savop {
 
     }
 
-
     public static int menu() {
 
         String menu = "\n#================================  MENU  ==================================#"
@@ -126,6 +127,27 @@ public class Savop {
         in.nextLine();
         return opcao;
 
+    }
+
+    private static int partidos(String[][] deputados, int ndeputados, String[] partidos) {
+        String partidodeputado, partido;
+        int partidosencontrados = 0, auxcont;
+        for (int i = 0; i < ndeputados; i++) {
+            auxcont = 0;
+            partidodeputado = deputados[i][2];
+            for (int j = 0; j < partidosencontrados; j++) {
+                partido = partidos[j];
+                if (partidodeputado.equalsIgnoreCase(partido)) {
+                    auxcont++;
+                }
+
+            }
+            if (auxcont == 0) {
+                partidos[partidosencontrados] = partidodeputado;
+                partidosencontrados++;
+            }
+        }
+        return partidosencontrados;
     }
 
     private static void listaDeputadosvotacoes(String[][] deputadosvotacoes, int auxnvotacoes) {
@@ -168,9 +190,9 @@ public class Savop {
          * o número de linhas lidas
          */
         int nvotacoes = 0, pos = 0, validalimpezavotacoes = 0;
-        String id,filevotacoes;
+        String id, filevotacoes;
         char votacao;
-        filevotacoes = assuntovotado+".txt";
+        filevotacoes = assuntovotado + ".txt";
         validalimpezavotacoes = Utilitarios.limpaVotacoes(votacoes);
         Scanner lerfic = new Scanner(new File(filevotacoes));
         while (lerfic.hasNext() && nvotacoes < MAX_DEPUTADOS) {

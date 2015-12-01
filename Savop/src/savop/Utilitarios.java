@@ -160,11 +160,12 @@ public class Utilitarios {
             }
             
         }
+        ordenarDeputadosVotacoes(deputadosvotacoes,votacoesencontradas);
         return votacoesencontradas;
     }
-    public static void ordenarDeputadosVotacoes(String [][]deputadosvotacoes){
-        for(int i=0; i<deputadosvotacoes.length-1;i++){
-            for(int j=i+1;j<deputadosvotacoes.length;j++){
+    public static void ordenarDeputadosVotacoes(String [][]deputadosvotacoes, int votacoesencontradas){
+        for(int i=0; i<votacoesencontradas-1;i++){
+            for(int j=i+1;j<votacoesencontradas;j++){
                 if(deputadosvotacoes[i][0].compareTo(deputadosvotacoes[j][0])>0){
                     String [] tmp=deputadosvotacoes[i];
                     deputadosvotacoes[i]=deputadosvotacoes[j];

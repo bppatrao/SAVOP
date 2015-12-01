@@ -36,6 +36,7 @@ public class Savop {
         String[][] deputados;
         String[][] deputadosvotacoes;
         String[] partidos;
+        int[][] votospartido;
         char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
         deputadosvotacoes = new String[MAX_DEPUTADOS][4];
@@ -84,7 +85,8 @@ public class Savop {
                     Utilitarios.continuar();
                     break;
                 case 6:
-                    out.format("6");
+                    votospartido = new int [npartidos][4];
+                    votospartido = votosPorPartido(deputados,ndeputados,partidos,npartidos,votacoes,votospartido);
                     Utilitarios.continuar();
                     break;
                 case 7:
@@ -128,6 +130,34 @@ public class Savop {
         in.nextLine();
         return opcao;
 
+    }
+    private static int[][] votosPorPartido(String[][] deputados, int ndeputados, String [] partidos, int npartidos, char [] votacoes, int [][]votospartido){
+        char votacao;
+        for(int i=0; i<npartidos; i++){
+            for(int j=0; j<ndeputados;j++){
+                if(partidos[i].equalsIgnoreCase(deputados[j][2])){
+                    votacao=votacoes[j];
+                    switch (votacao){
+                        case 'S':
+                            votospartido[i][0]++;
+                            votospartido[i][1]++;
+                            break;
+                        case 'N':
+                            votospartido[i][0]++;
+                            votospartido[i][2]++;
+                            break;
+                        case 'A':
+                            votospartido[i][0]++;
+                            votospartido[i][3]++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        return votospartido;
+        
     }
 
     private static int partidos(String[][] deputados, int ndeputados, String[] partidos) {
@@ -211,6 +241,7 @@ public class Savop {
             }
 
         }
+        
         return nvotacoes;
     }
 

@@ -135,6 +135,12 @@ public class Savop {
         return opcao;
 
     }
+    private static void guardarListagemResultadosVotacoes(String assuntovotado, String [] partidos, int [][] votospartido, int npartidos, int [] totaisvotacao)throws FileNotFoundException {
+        String nomeFich="Resultados_"+assuntovotado;
+        
+        
+    }
+    
     private static void listagemResultadosVotacoes(String assuntovotado, String [] partidos, int [][] votospartido, int npartidos, int [] totaisvotacao){
         int contPaginas = 0;
         for(int i=0; i<totaisvotacao.length;i++){

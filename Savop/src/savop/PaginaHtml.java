@@ -114,15 +114,27 @@ public class PaginaHtml {
      * @param info - matriz corpo da tabela
      * @param nEls - número de linhas da matriz info
      */
-    public static void corpoTabela(Formatter pag, String[][] info,
+    public static void corpoTabela(Formatter pag, int[][] info, String[] partidos, int[] totaisvotacao,
             int nEls) {
 
         for (int i = 0; i < nEls; i++) {
             pag.format("<tr>");
-            for (int j = 0; j < info[i].length; j++) {
+            pag.format("<td>%s</td>", partidos[i]);
+            for (int j = 1; j < info[i].length; j++) {
                 pag.format("<td>%s</td>", info[i][j]);
             }
+            
             pag.format("</tr>%n");
+        }
+        for (int k = 0; k<totaisvotacao.length;k++){
+            pag.format("<tr>");
+            if(k==0){
+                pag.format("<td>%s</td>", "TOTAIS");
+            }else{
+                pag.format("<td>%s</td>", totaisvotacao[k]);
+            }
+            pag.format("</tr>%n");
+            
         }
     }
 
@@ -134,10 +146,10 @@ public class PaginaHtml {
      * @param nEls - número de linhas da matriz info
      */
     public static void criarTabelaSemLinhaTitulos(Formatter pag,
-            String[][] info, int nEls) {
+            int[][] info, String[] partidos, int[] totaisvotacao, int nEls) {
 
         iniciarTabela(pag);
-        corpoTabela(pag, info, nEls);
+        corpoTabela(pag, info, partidos, totaisvotacao,nEls);
         fecharTabela(pag);
 
     }
@@ -151,10 +163,10 @@ public class PaginaHtml {
      * @param nEls - número de linhas da matriz info
      */
     public static void criarTabelaComLinhaTitulos(Formatter pag,
-            String[] titulos, String[][] info, int nEls) {
+            String[] titulos, int[][] info, String[] partidos, int[] totaisvotacao, int nEls) {
         iniciarTabela(pag);
         linhaCabecalhoTabela(pag, titulos);
-        corpoTabela(pag, info, nEls);
+        corpoTabela(pag, info, partidos, totaisvotacao,nEls);
         fecharTabela(pag);
     }
 
@@ -168,12 +180,12 @@ public class PaginaHtml {
      * @param nEls - número de linhas da matriz info
      */
     public static void criarTabelaComDuasLinhasTitulos(Formatter pag,
-            String[] titulos1, String[] titulos2, String[][] info, int nEls) {
+            String[] titulos1, String[] titulos2, int[][] info,String[] partidos, int[] totaisvotacao, int nEls) {
 
         iniciarTabela(pag);
         linhaCabecalhoTabela(pag, titulos1);
         linhaCabecalhoTabela(pag, titulos2);
-        corpoTabela(pag, info, nEls);
+        corpoTabela(pag, info, partidos, totaisvotacao,nEls);
         fecharTabela(pag);
     }
 }

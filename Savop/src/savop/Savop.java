@@ -98,11 +98,14 @@ public class Savop {
                 case 7:
                     votosfaixaetaria = new int[3][3];
                     votosfaixaetaria = votosPorFaixaEtaria(deputados, ndeputados, votacoes, votosfaixaetaria);
-                    listagemResultadosFEtaria(assuntovotado,votosfaixaetaria);
+                    listagemResultadosFEtaria(assuntovotado, votosfaixaetaria);
                     Utilitarios.continuar();
                     break;
                 case 8:
-                    out.format("8");
+                    votospartido = new int[npartidos][4];
+                    votospartido = votosPorPartido(deputados, ndeputados, partidos, npartidos, votacoes, votospartido);
+                    ordenarVotosPorPartido(votospartido, partidos, npartidos);
+                    criarPaginaHTML(assuntovotado,votospartido,npartidos, partidos, totaisvotacao);
                     Utilitarios.continuar();
                     break;
                 default:
@@ -139,26 +142,54 @@ public class Savop {
         return opcao;
 
     }
-    private static void listagemResultadosFEtaria(String assuntovotado, int[][]votosfaixaetaria) {
-        int contPaginas = 0;      
+
+    private static void criarPaginaHTML(String assuntovotado, int[][] votospartido, int npartidos, String [] partidos, int [] totaisvotacao) throws FileNotFoundException {
+        String nomeFich = "Resultados_" + assuntovotado + ".html";
+        String titulo = "RESULTADOS DA VOTACAO " + assuntovotado;
+        String cabecalho = "RESULTADOS DA VOTACAO " + assuntovotado;
+        String[] cabecalhotabela = new String[]{"PARTIDOS", "VOTOS A FAVOR", "VOTOS CONTRA", "ABSTENÇOES"};
+        String[] cabecalhotabelab = new String[]{"===========", "===========", "===========", "==========="};
+        String[] totais = new String[]{"TOTAIS: "};
+        String[] linhatotais = new String[]{"===========", "===========", "===========", "==========="};
+        
+        for (int i = 0; i < totaisvotacao.length; i++) {
+            for (int j = 0; j < npartidos; j++) {
+                totaisvotacao[i] = totaisvotacao[i] + votospartido[j][i + 1];
+            }
+        }
+        Formatter pag = new Formatter(new File(nomeFich));
+
+        PaginaHtml.iniciarPagina(pag, titulo);
+
+        PaginaHtml.cabecalho(pag, 20, cabecalho);
+
+        PaginaHtml.criarTabelaComDuasLinhasTitulos(pag, cabecalhotabela, cabecalhotabelab, votospartido,partidos,totaisvotacao, npartidos);
+
+        PaginaHtml.fecharPaginaComData(pag);
+        
+        pag.close();
+
+    }
+
+    private static void listagemResultadosFEtaria(String assuntovotado, int[][] votosfaixaetaria) {
+        int contPaginas = 0;
         Utilitarios.cabecalhoresultadosfaixaetaria(assuntovotado);
         System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "<35anos",
-                    votosfaixaetaria[0][0], votosfaixaetaria[0][1], votosfaixaetaria[0][2]);
-        
+                votosfaixaetaria[0][0], votosfaixaetaria[0][1], votosfaixaetaria[0][2]);
+
         System.out.println(
                 "=================================================================");
         System.out.printf("%-20s||%-15s||%-15s||%-15s%n", ">=35anos e <=60anos",
-                    votosfaixaetaria[1][0], votosfaixaetaria[1][1], votosfaixaetaria[1][2]);
-        
+                votosfaixaetaria[1][0], votosfaixaetaria[1][1], votosfaixaetaria[1][2]);
+
         System.out.println(
                 "=================================================================");
         System.out.printf("%-20s||%-15s||%-15s||%-15s%n", ">60anos",
-                    votosfaixaetaria[2][0], votosfaixaetaria[2][1], votosfaixaetaria[2][2]);
-        
+                votosfaixaetaria[2][0], votosfaixaetaria[2][1], votosfaixaetaria[2][2]);
+
         System.out.println(
                 "=================================================================");
     }
-    
 
     private static int[][] votosPorFaixaEtaria(String[][] deputados, int ndeputados, char[] votacoes, int[][] votosfaixaetaria) {
         int idade;
@@ -196,30 +227,26 @@ public class Savop {
                         break;
                 }
 
-            } else {
-                if (idade > 60) {
-                    votacao = votacoes[i];
-                    switch (votacao) {
-                        case 'S':
-                            votosfaixaetaria[2][0]++;
-                            break;
-                        case 'N':
-                            votosfaixaetaria[2][1]++;
-                            break;
-                        case 'A':
-                            votosfaixaetaria[2][2]++;
-                            break;
-                        default:
-                            break;
-                    }
-                    
+            } else if (idade > 60) {
+                votacao = votacoes[i];
+                switch (votacao) {
+                    case 'S':
+                        votosfaixaetaria[2][0]++;
+                        break;
+                    case 'N':
+                        votosfaixaetaria[2][1]++;
+                        break;
+                    case 'A':
+                        votosfaixaetaria[2][2]++;
+                        break;
+                    default:
+                        break;
                 }
+
             }
         }
         return votosfaixaetaria;
     }
-
-    
 
     private static void guardarListagemResultadosVotacoes(String assuntovotado, String[] partidos, int[][] votospartido, int npartidos, int[] totaisvotacao) throws FileNotFoundException {
         String nomeFich = "Resultados_" + assuntovotado + ".txt";

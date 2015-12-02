@@ -20,7 +20,7 @@ public class Savop {
     private final static int MAX_DEPUTADOS = 230;
     private final static String FILE_DEPUTADOS = "Deputados.txt";
     private final static String PAGINA_HTML = "Pagina.html";
-    private final static int MAX_LINHAS_PAGINA = 5;
+    private final static int MAX_LINHAS_PAGINA = 10;
 
     public static Formatter out = new Formatter(System.out);
     public static Scanner in = new Scanner(System.in);
@@ -43,7 +43,7 @@ public class Savop {
         deputadosvotacoes = new String[MAX_DEPUTADOS][4];
         votacoes = new char[MAX_DEPUTADOS];
         partidos = new String[MAX_DEPUTADOS];
-        totaisvotacao =new int [3];
+        totaisvotacao =new int[3];
         //teste1
 
         do {
@@ -136,13 +136,30 @@ public class Savop {
 
     }
     private static void listagemResultadosVotacoes(String assuntovotado, String [] partidos, int [][] votospartido, int npartidos, int [] totaisvotacao){
+        int contPaginas = 0;
         for(int i=0; i<totaisvotacao.length;i++){
             for(int j = 0; j<npartidos;j++){
                 totaisvotacao[i]=totaisvotacao[i]+votospartido[j][i+1];
-                
             }
         }
-        
+        for (int i = 0; i < npartidos; i++) {
+            if (i % MAX_LINHAS_PAGINA == 0) {
+                if (contPaginas > 0) {
+                    Utilitarios.continuar();
+                }
+                contPaginas++;
+                System.out.println("\nPÁGINA: " + contPaginas);
+                Utilitarios.cabecalhoresultadosvotacoes(assuntovotado);
+            }
+            System.out.printf("%-20s||%-15s||%-15s||%-15s%n", partidos[i],
+                    votospartido[i][1], votospartido[i][2], votospartido[i][3]);
+        }
+        System.out.println(
+                "=================================================================");
+        System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "Totais Votação",
+                    totaisvotacao[0], totaisvotacao[1], totaisvotacao[2]);
+                System.out.println(
+                "=================================================================");
         
     }
 

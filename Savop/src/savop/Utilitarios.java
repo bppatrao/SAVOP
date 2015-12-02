@@ -128,6 +128,13 @@ public class Utilitarios {
         return i;
 
     }
+    public static void cabecalhoresultadosvotacoes(String assuntovotado){
+        System.out.println(
+                "#================  Resultados "+assuntovotado+"  =====================#");
+        System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "PARTIDO", "VOTOS A FAVOR",
+                "VOTOS CONTRA", "ABSTENÇOES");
+        
+    }
     public static void cabecalholistavotacoes() {
         System.out.printf("%-6s||%-30s||%-10s||%-6s%n", "ID", "NOME",
                 "PARTIDO", "VOT");

@@ -30,18 +30,20 @@ public class Savop {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        int ndeputados = 0,npartidos=0, opcao, nvotacoes = 0, auxnvotacoes = 0;
+        int ndeputados = 0, npartidos = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
         boolean valida = false;
-        String id, assuntovotado;
+        String id, assuntovotado="";
         String[][] deputados;
         String[][] deputadosvotacoes;
         String[] partidos;
         int[][] votospartido;
+        int[]totaisvotacao;
         char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
         deputadosvotacoes = new String[MAX_DEPUTADOS][4];
         votacoes = new char[MAX_DEPUTADOS];
         partidos = new String[MAX_DEPUTADOS];
+        totaisvotacao =new int [3];
         //teste1
 
         do {
@@ -50,7 +52,7 @@ public class Savop {
             switch (opcao) {
                 case 1:
                     ndeputados = lerFicheiro(deputados);
-                    npartidos=partidos(deputados,ndeputados,partidos);
+                    npartidos = partidos(deputados, ndeputados, partidos);
 
                     Utilitarios.continuar();
                     break;
@@ -85,8 +87,10 @@ public class Savop {
                     Utilitarios.continuar();
                     break;
                 case 6:
-                    votospartido = new int [npartidos][4];
-                    votospartido = votosPorPartido(deputados,ndeputados,partidos,npartidos,votacoes,votospartido);
+                    votospartido = new int[npartidos][4];
+                    votospartido = votosPorPartido(deputados, ndeputados, partidos, npartidos, votacoes, votospartido);
+                    ordenarVotosPorPartido(votospartido, partidos, npartidos);
+                    listagemResultadosVotacoes(assuntovotado,partidos,votospartido,npartidos,totaisvotacao);
                     Utilitarios.continuar();
                     break;
                 case 7:
@@ -131,13 +135,50 @@ public class Savop {
         return opcao;
 
     }
-    private static int[][] votosPorPartido(String[][] deputados, int ndeputados, String [] partidos, int npartidos, char [] votacoes, int [][]votospartido){
+    private static void listagemResultadosVotacoes(String assuntovotado, String [] partidos, int [][] votospartido, int npartidos, int [] totaisvotacao){
+        for(int i=0; i<totaisvotacao.length;i++){
+            for(int j = 0; j<npartidos;j++){
+                totaisvotacao[i]=totaisvotacao[i]+votospartido[j][i+1];
+                
+            }
+        }
+        
+        
+    }
+
+    private static void ordenarVotosPorPartido(int[][] votospartido, String[] partidos, int npartidos) {
+        for (int i = 0; i < npartidos - 1; i++) {
+            for (int j = i + 1; j < npartidos; j++) {
+                if (votospartido[i][0] < (votospartido[j][0])) {
+                    int[] tmp = votospartido[i];
+                    votospartido[i] = votospartido[j];
+                    votospartido[j] = tmp;
+                    String aux = partidos[i];
+                    partidos[i] = partidos[j];
+                    partidos[j] = aux;
+                } else {
+                    if (votospartido[i][0] == votospartido[j][0]) {
+                        if (partidos[i].compareTo(partidos[j]) > 0) {
+                            int[] tmp = votospartido[i];
+                            votospartido[i] = votospartido[j];
+                            votospartido[j] = tmp;
+                            String aux = partidos[i];
+                            partidos[i] = partidos[j];
+                            partidos[j] = aux;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static int[][] votosPorPartido(String[][] deputados, int ndeputados, String[] partidos, int npartidos, char[] votacoes, int[][] votospartido) {
         char votacao;
-        for(int i=0; i<npartidos; i++){
-            for(int j=0; j<ndeputados;j++){
-                if(partidos[i].equalsIgnoreCase(deputados[j][2])){
-                    votacao=votacoes[j];
-                    switch (votacao){
+        for (int i = 0; i < npartidos; i++) {
+            for (int j = 0; j < ndeputados; j++) {
+                if (partidos[i].equalsIgnoreCase(deputados[j][2])) {
+                    votacao = votacoes[j];
+                    switch (votacao) {
                         case 'S':
                             votospartido[i][0]++;
                             votospartido[i][1]++;
@@ -157,7 +198,7 @@ public class Savop {
             }
         }
         return votospartido;
-        
+
     }
 
     private static int partidos(String[][] deputados, int ndeputados, String[] partidos) {
@@ -241,7 +282,7 @@ public class Savop {
             }
 
         }
-        
+
         return nvotacoes;
     }
 

@@ -123,29 +123,27 @@ public class PaginaHtml {
             for (int j = 1; j < info[i].length; j++) {
                 pag.format("<td>%s</td>", info[i][j]);
             }
-            
-            pag.format("</tr>%n");
-        }
-        for (int k = 0; k<totaisvotacao.length;k++){
-            pag.format("<tr>");
-            if(k==0){
-                pag.format("<td>%s</td>", "TOTAIS");
-            }else{
-                pag.format("<td>%s</td>", totaisvotacao[k]);
-            }
-            pag.format("</tr>%n");
-            
-        }
-    }
 
-    /**
-     * Cria na página uma tabela sem linha de titulos
-     *
-     * @param pag - ficheiro página
-     * @param info - matriz corpo da tabela
-     * @param nEls - número de linhas da matriz info
-     */
-    public static void criarTabelaSemLinhaTitulos(Formatter pag,
+            pag.format("</tr>%n");
+        }
+        pag.format("<tr>");
+        pag.format("<td>%s</td>", "TOTAIS");
+        for (int k = 0; k < totaisvotacao.length; k++) {
+            pag.format("<td>%s</td>", totaisvotacao[k]);
+        }
+        pag.format("</tr>%n");
+        
+
+}
+
+/**
+ * Cria na página uma tabela sem linha de titulos
+ *
+ * @param pag - ficheiro página
+ * @param info - matriz corpo da tabela
+ * @param nEls - número de linhas da matriz info
+ */
+public static void criarTabelaSemLinhaTitulos(Formatter pag,
             int[][] info, String[] partidos, int[] totaisvotacao, int nEls) {
 
         iniciarTabela(pag);

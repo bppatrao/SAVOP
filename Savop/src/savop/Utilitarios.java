@@ -133,6 +133,8 @@ public class Utilitarios {
                 "#================  Resultados "+assuntovotado+"  =====================#");
         System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "PARTIDO", "VOTOS A FAVOR",
                 "VOTOS CONTRA", "ABSTENÇOES");
+        System.out.println(
+                "=================================================================");
         
     }
     public static void cabecalholistavotacoes() {

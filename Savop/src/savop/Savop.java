@@ -32,18 +32,18 @@ public class Savop {
         // TODO code application logic here
         int ndeputados = 0, npartidos = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
         boolean valida = false;
-        String id, assuntovotado="";
+        String id, assuntovotado = "";
         String[][] deputados;
         String[][] deputadosvotacoes;
         String[] partidos;
         int[][] votospartido;
-        int[]totaisvotacao;
+        int[] totaisvotacao;
         char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
         deputadosvotacoes = new String[MAX_DEPUTADOS][4];
         votacoes = new char[MAX_DEPUTADOS];
         partidos = new String[MAX_DEPUTADOS];
-        totaisvotacao =new int[3];
+        totaisvotacao = new int[3];
         //teste1
 
         do {
@@ -90,7 +90,8 @@ public class Savop {
                     votospartido = new int[npartidos][4];
                     votospartido = votosPorPartido(deputados, ndeputados, partidos, npartidos, votacoes, votospartido);
                     ordenarVotosPorPartido(votospartido, partidos, npartidos);
-                    listagemResultadosVotacoes(assuntovotado,partidos,votospartido,npartidos,totaisvotacao);
+                    listagemResultadosVotacoes(assuntovotado, partidos, votospartido, npartidos, totaisvotacao);
+                    guardarListagemResultadosVotacoes(assuntovotado,partidos,votospartido,npartidos,totaisvotacao);
                     Utilitarios.continuar();
                     break;
                 case 7:
@@ -135,17 +136,35 @@ public class Savop {
         return opcao;
 
     }
-    private static void guardarListagemResultadosVotacoes(String assuntovotado, String [] partidos, int [][] votospartido, int npartidos, int [] totaisvotacao)throws FileNotFoundException {
-        String nomeFich="Resultados_"+assuntovotado;
-        
-        
+
+    private static void guardarListagemResultadosVotacoes(String assuntovotado, String[] partidos, int[][] votospartido, int npartidos, int[] totaisvotacao) throws FileNotFoundException {
+        String nomeFich = "Resultados_" + assuntovotado + ".txt";
+        Formatter escreverfich = new Formatter(new File(nomeFich));
+        escreverfich.format("%n%s%n", "Resultados: " + assuntovotado);
+        escreverfich.format(
+                "#================  Resultados " + assuntovotado + "  =====================#%n");
+        escreverfich.format("%-20s||%-15s||%-15s||%-15s%n", "PARTIDO", "VOTOS A FAVOR",
+                "VOTOS CONTRA", "ABSTENÇOES");
+        escreverfich.format(
+                "=================================================================%n");
+        for (int i = 0; i < npartidos; i++) {
+            escreverfich.format("%-20s||%-15s||%-15s||%-15s%n", partidos[i],
+                    votospartido[i][1], votospartido[i][2], votospartido[i][3]);
+        }
+        escreverfich.format(
+                "=================================================================%n");
+        escreverfich.format("%-20s||%-15s||%-15s||%-15s%n", "Totais Votação",
+                totaisvotacao[0], totaisvotacao[1], totaisvotacao[2]);
+        escreverfich.format(
+                "=================================================================");
+        escreverfich.close();
     }
-    
-    private static void listagemResultadosVotacoes(String assuntovotado, String [] partidos, int [][] votospartido, int npartidos, int [] totaisvotacao){
+
+    private static void listagemResultadosVotacoes(String assuntovotado, String[] partidos, int[][] votospartido, int npartidos, int[] totaisvotacao) {
         int contPaginas = 0;
-        for(int i=0; i<totaisvotacao.length;i++){
-            for(int j = 0; j<npartidos;j++){
-                totaisvotacao[i]=totaisvotacao[i]+votospartido[j][i+1];
+        for (int i = 0; i < totaisvotacao.length; i++) {
+            for (int j = 0; j < npartidos; j++) {
+                totaisvotacao[i] = totaisvotacao[i] + votospartido[j][i + 1];
             }
         }
         for (int i = 0; i < npartidos; i++) {
@@ -163,10 +182,10 @@ public class Savop {
         System.out.println(
                 "=================================================================");
         System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "Totais Votação",
-                    totaisvotacao[0], totaisvotacao[1], totaisvotacao[2]);
-                System.out.println(
+                totaisvotacao[0], totaisvotacao[1], totaisvotacao[2]);
+        System.out.println(
                 "=================================================================");
-        
+
     }
 
     private static void ordenarVotosPorPartido(int[][] votospartido, String[] partidos, int npartidos) {
@@ -179,16 +198,14 @@ public class Savop {
                     String aux = partidos[i];
                     partidos[i] = partidos[j];
                     partidos[j] = aux;
-                } else {
-                    if (votospartido[i][0] == votospartido[j][0]) {
-                        if (partidos[i].compareTo(partidos[j]) > 0) {
-                            int[] tmp = votospartido[i];
-                            votospartido[i] = votospartido[j];
-                            votospartido[j] = tmp;
-                            String aux = partidos[i];
-                            partidos[i] = partidos[j];
-                            partidos[j] = aux;
-                        }
+                } else if (votospartido[i][0] == votospartido[j][0]) {
+                    if (partidos[i].compareTo(partidos[j]) > 0) {
+                        int[] tmp = votospartido[i];
+                        votospartido[i] = votospartido[j];
+                        votospartido[j] = tmp;
+                        String aux = partidos[i];
+                        partidos[i] = partidos[j];
+                        partidos[j] = aux;
                     }
                 }
             }

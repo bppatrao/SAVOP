@@ -8,6 +8,7 @@ package savop;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import static savop.Savop.in;
 import static savop.Savop.out;
@@ -44,14 +45,12 @@ public class Utilitarios {
         if ("".equals(nome)) {
             System.out.println("O campo não pode ficar em branco!");
             return false;
+        } else if (nome.matches("\\p{Alpha}*")) {
+            System.out.println("Nome Validado!");
+            return true;
         } else {
-            if (nome.matches("\\p{Alpha}*")) {
-                System.out.println("Nome Validado!");
-                return true;
-            } else {
-                System.out.println("O nome só pode conter Letras");
-                return false;
-            }
+            System.out.println("O nome só pode conter Letras");
+            return false;
         }
     }
 
@@ -59,14 +58,12 @@ public class Utilitarios {
         if ("".equals(partido)) {
             System.out.println("O campo não pode ficar em branco!");
             return false;
+        } else if (partido.matches("\\p{Alpha}*")) {
+            System.out.println("Partido Validado!");
+            return true;
         } else {
-            if (partido.matches("\\p{Alpha}*")) {
-                System.out.println("Partido Validado!");
-                return true;
-            } else {
-                System.out.println("O Partido só pode conter LETRAS");
-                return false;
-            }
+            System.out.println("O Partido só pode conter LETRAS");
+            return false;
         }
     }
 
@@ -98,24 +95,21 @@ public class Utilitarios {
              * dia invalido
              */
             return (false);
+        } else if ((new Integer(mes)).intValue() != (new Integer(cal.get(Calendar.MONTH) + 1)).intValue()) {
+            /**
+             * mes invalido
+             */
+
+            return (false);
         } else {
-            if ((new Integer(mes)).intValue() != (new Integer(cal.get(Calendar.MONTH) + 1)).intValue()) {
+            if ((new Integer(ano)).intValue() != (new Integer(cal.get(Calendar.YEAR))).intValue()) {
                 /**
-                 * mes invalido
+                 * ano invalido
                  */
-
                 return (false);
-            } else {
-                if ((new Integer(ano)).intValue() != (new Integer(cal.get(Calendar.YEAR))).intValue()) {
-                    /**
-                     * ano invalido
-                     */
-                    return (false);
-                }
-
-                return (true);
             }
 
+            return (true);
         }
     }
 
@@ -128,22 +122,23 @@ public class Utilitarios {
         return i;
 
     }
-    public static void cabecalhoresultadosvotacoes(String assuntovotado){
+
+    public static void cabecalhoresultadosvotacoes(String assuntovotado) {
         System.out.println(
-                "#================  Resultados "+assuntovotado+"  =====================#");
+                "#================  Resultados " + assuntovotado + "  =====================#");
         System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "PARTIDO", "VOTOS A FAVOR",
                 "VOTOS CONTRA", "ABSTENÇOES");
         System.out.println(
                 "=================================================================");
-        
+
     }
+
     public static void cabecalholistavotacoes() {
         System.out.printf("%-6s||%-30s||%-10s||%-6s%n", "ID", "NOME",
                 "PARTIDO", "VOT");
         System.out.println(
                 "#=======================  Listagem Votações  =========================#");
     }
-
 
     public static void cabecalho() {
         System.out.printf("%-6s||%-30s||%-10s||%-12s%n", "ID", "NOME",
@@ -156,33 +151,72 @@ public class Utilitarios {
         out.format("%n%s%n", "Para continuar digite (char Enter)");
         in.nextLine();
     }
-    
-    public static int deputadosVotacoes(char[] votacoes, String [][] deputados, String [][] deputadosvotacoes, int ndeputados){
-        int i=0,votacoesencontradas=0;
-        for (i=0; i<votacoes.length;i++){
-            if(votacoes[i] != 'F'){
+
+    public static int deputadosVotacoes(char[] votacoes, String[][] deputados, String[][] deputadosvotacoes, int ndeputados) {
+        int i = 0, votacoesencontradas = 0;
+        for (i = 0; i < votacoes.length; i++) {
+            if (votacoes[i] != 'F') {
                 deputadosvotacoes[votacoesencontradas][0] = deputados[i][0];
                 deputadosvotacoes[votacoesencontradas][1] = deputados[i][1];
                 deputadosvotacoes[votacoesencontradas][2] = deputados[i][2];
-                deputadosvotacoes[votacoesencontradas][3] = String.valueOf(votacoes[i]);              
+                deputadosvotacoes[votacoesencontradas][3] = String.valueOf(votacoes[i]);
                 votacoesencontradas++;
             }
-            
+
         }
-        ordenarDeputadosVotacoes(deputadosvotacoes,votacoesencontradas);
+        ordenarDeputadosVotacoes(deputadosvotacoes, votacoesencontradas);
         return votacoesencontradas;
     }
-    public static void ordenarDeputadosVotacoes(String [][]deputadosvotacoes, int votacoesencontradas){
-        for(int i=0; i<votacoesencontradas-1;i++){
-            for(int j=i+1;j<votacoesencontradas;j++){
-                if(deputadosvotacoes[i][0].compareTo(deputadosvotacoes[j][0])>0){
-                    String [] tmp=deputadosvotacoes[i];
-                    deputadosvotacoes[i]=deputadosvotacoes[j];
-                    deputadosvotacoes[j]=tmp;
-                                        
+
+    public static void ordenarDeputadosVotacoes(String[][] deputadosvotacoes, int votacoesencontradas) {
+        for (int i = 0; i < votacoesencontradas - 1; i++) {
+            for (int j = i + 1; j < votacoesencontradas; j++) {
+                if (deputadosvotacoes[i][0].compareTo(deputadosvotacoes[j][0]) > 0) {
+                    String[] tmp = deputadosvotacoes[i];
+                    deputadosvotacoes[i] = deputadosvotacoes[j];
+                    deputadosvotacoes[j] = tmp;
+
                 }
             }
         }
     }
 
+    public static int calcularIdade(String datadenascimento) {
+        DateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Date dataNascInput = null;
+
+        try {
+
+            dataNascInput = sdf.parse(datadenascimento);
+
+        } catch (Exception e) {
+        }
+
+        Calendar dateOfBirth = new GregorianCalendar();
+
+        dateOfBirth.setTime(dataNascInput);
+
+// Cria um objeto calendar com a data atual
+        Calendar today = Calendar.getInstance();
+
+// Obtém a idade baseado no ano
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+
+        dateOfBirth.add(Calendar.YEAR, age);
+
+        if (today.before(dateOfBirth)) {
+
+            age--;
+
+        }
+
+        return age;
+
+    }
+
+}
+
+Leia mais em: Calcule a idade corretamente em Java http://www.devmedia.com.br/calcule-a-idade-corretamente-em-java/4729#ixzz3tAGzDaCO
+
+ 
 }

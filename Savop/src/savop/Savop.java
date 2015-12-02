@@ -26,11 +26,19 @@ public class Savop {
     public static Scanner in = new Scanner(System.in);
 
     /**
-     * @param args the command line arguments
+     * Metodo Main / Principal é onde iniciamos o programa e contrloamos todas as opções
+     * 
+     * @param ndeputados armazena o numero de deputados lidos do ficheiro deputados
+     * @param npartidos armazena o numero diferente de partidos existentes no ficheiro deputados
+     * @param opcao do menu escolhida
+     * @param nvotacoes numero de votacoes lidas com sucesso
+     * @param auxvotacoes é o numero de votacoes encontradas por e utilizo para no valor para as organizar
+     * @param valida é uma validação para controlar o sucesso da alteração dos dados do deputado
+     * 
+     * 
      */
     public static void main(String[] args) throws FileNotFoundException {
-        // TODO code application logic here
-        int ndeputados = 0, npartidos = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
+        int ndeputados = 0, npartidos = 0, opcao, nvotacoes=0, auxnvotacoes = 0;
         boolean valida = false;
         File logErros = LogErros.criarLogErros();
         Formatter escreverlog = new Formatter(logErros);
@@ -47,7 +55,6 @@ public class Savop {
         votacoes = new char[MAX_DEPUTADOS];
         partidos = new String[MAX_DEPUTADOS];
         totaisvotacao = new int[3];
-        //teste1
 
         do {
 

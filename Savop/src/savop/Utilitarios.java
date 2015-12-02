@@ -122,6 +122,14 @@ public class Utilitarios {
         return i;
 
     }
+    public static void cabecalhoresultadosfaixaetaria(String assuntovotado) {
+        System.out.println(
+                "#================  Resultados " + assuntovotado + "  =====================#");
+        System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "FAIXA ETÁRIA", "VOTOS A FAVOR",
+                "VOTOS CONTRA", "ABSTENÇOES");
+        System.out.println(
+                "=================================================================");
+    }
 
     public static void cabecalhoresultadosvotacoes(String assuntovotado) {
         System.out.println(
@@ -184,16 +192,12 @@ public class Utilitarios {
     public static int calcularIdade(String datadenascimento) {
         DateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Date dataNascInput = null;
-
         try {
 
             dataNascInput = sdf.parse(datadenascimento);
-
         } catch (Exception e) {
         }
-
         Calendar dateOfBirth = new GregorianCalendar();
-
         dateOfBirth.setTime(dataNascInput);
 
 // Cria um objeto calendar com a data atual
@@ -201,22 +205,12 @@ public class Utilitarios {
 
 // Obtém a idade baseado no ano
         int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
-
         dateOfBirth.add(Calendar.YEAR, age);
-
         if (today.before(dateOfBirth)) {
-
             age--;
-
         }
 
         return age;
 
     }
-
-}
-
-Leia mais em: Calcule a idade corretamente em Java http://www.devmedia.com.br/calcule-a-idade-corretamente-em-java/4729#ixzz3tAGzDaCO
-
- 
 }

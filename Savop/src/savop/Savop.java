@@ -122,7 +122,12 @@ public class Savop {
         } while (opcao != 0);
 
     }
-
+    
+    /**
+     * Iniciar Menu da Aplicação
+     *
+     * @param opcao - retorna o valor digitado pelo utilizador "opcao" do Menu pretendida
+     */
     public static int menu() {
 
         String menu = "\n#================================  MENU  ==================================#"
@@ -142,16 +147,19 @@ public class Savop {
         return opcao;
 
     }
-
+    
+    /**
+     * Criar Pagina HTML com resulde votação por partido
+     *
+     * 
+     */
     private static void criarPaginaHTML(String assuntovotado, int[][] votospartido, int npartidos, String [] partidos, int [] totaisvotacao) throws FileNotFoundException {
         String nomeFich = "Resultados_" + assuntovotado + ".html";
         String titulo = "RESULTADOS DA VOTACAO " + assuntovotado;
         String cabecalho = "RESULTADOS DA VOTACAO " + assuntovotado;
         String[] cabecalhotabela = new String[]{"PARTIDOS", "VOTOS A FAVOR", "VOTOS CONTRA", "ABSTENÇOES"};
         String[] cabecalhotabelab = new String[]{"===========", "===========", "===========", "==========="};
-        String[] totais = new String[]{"TOTAIS: "};
-        String[] linhatotais = new String[]{"===========", "===========", "===========", "==========="};
-        
+                
         for (int i = 0; i < totaisvotacao.length; i++) {
             for (int j = 0; j < npartidos; j++) {
                 totaisvotacao[i] = totaisvotacao[i] + votospartido[j][i + 1];
@@ -170,7 +178,12 @@ public class Savop {
         pag.close();
 
     }
-
+    
+    /**
+     * Listagem para ecrã dos Resultados das votações por Faixa Etária
+     *
+     * 
+     */
     private static void listagemResultadosFEtaria(String assuntovotado, int[][] votosfaixaetaria) {
         int contPaginas = 0;
         Utilitarios.cabecalhoresultadosfaixaetaria(assuntovotado);
@@ -190,7 +203,13 @@ public class Savop {
         System.out.println(
                 "=================================================================");
     }
-
+    
+    /**
+     * Metodo responsável por preencher array de votos por Faixa Etária
+     * 
+     * @param idade - vai ser utilizada para guardar a idade obtida pelo método calcularIdade da class Utilitarios
+     * @param votacao - valor da votacao utilizada no switch para salvaguardar na respectiva faixa etária
+     */
     private static int[][] votosPorFaixaEtaria(String[][] deputados, int ndeputados, char[] votacoes, int[][] votosfaixaetaria) {
         int idade;
         char votacao;
@@ -247,7 +266,13 @@ public class Savop {
         }
         return votosfaixaetaria;
     }
-
+    
+    /**
+     * Metodo responsável guardar em Ficheiro os Resultados das Votacoes
+     * 
+     * @param nomeFich - nome pelo qual vai ser guardado o ficheiro
+     * @param escreverfich- objecto responsavél por escrever do respectivo ficheiro
+     */
     private static void guardarListagemResultadosVotacoes(String assuntovotado, String[] partidos, int[][] votospartido, int npartidos, int[] totaisvotacao) throws FileNotFoundException {
         String nomeFich = "Resultados_" + assuntovotado + ".txt";
         Formatter escreverfich = new Formatter(new File(nomeFich));
@@ -270,7 +295,12 @@ public class Savop {
                 "=================================================================");
         escreverfich.close();
     }
-
+    
+    /**
+     * Metodo responsável por mostrar no ecrã a listagem dos Resultados das Votacoes
+     * 
+     * @param contPagina - variável utilizada para controlo da paginação pretendida
+     */
     private static void listagemResultadosVotacoes(String assuntovotado, String[] partidos, int[][] votospartido, int npartidos, int[] totaisvotacao) {
         int contPaginas = 0;
         for (int i = 0; i < totaisvotacao.length; i++) {
@@ -298,7 +328,11 @@ public class Savop {
                 "=================================================================");
 
     }
-
+    
+    /**
+     * Metodo responsável por ordenar os votos por partido de maior representatividade e no caso de igualdade por ordem ascendente pelo nome
+     * 
+     */
     private static void ordenarVotosPorPartido(int[][] votospartido, String[] partidos, int npartidos) {
         for (int i = 0; i < npartidos - 1; i++) {
             for (int j = i + 1; j < npartidos; j++) {
@@ -322,7 +356,12 @@ public class Savop {
             }
         }
     }
-
+    
+    /**
+     * Metodo responsável por preencher array de votos por partido (votospartido)
+     * 
+     * @param votacao - valor da votacao utilizada no switch para salvaguardar no respectivo partido
+     */
     private static int[][] votosPorPartido(String[][] deputados, int ndeputados, String[] partidos, int npartidos, char[] votacoes, int[][] votospartido) {
         char votacao;
         for (int i = 0; i < npartidos; i++) {
@@ -351,7 +390,13 @@ public class Savop {
         return votospartido;
 
     }
-
+    
+    /**
+     * Metodo responsável por preencher array de partidos existentes
+     * 
+     * @param partido -
+     * @param votacao - valor da votacao utilizada no switch para salvaguardar na respectiva faixa etária
+     */
     private static int partidos(String[][] deputados, int ndeputados, String[] partidos) {
         String partidodeputado, partido;
         int npartidos = 0, auxcont;

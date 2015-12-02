@@ -213,4 +213,16 @@ public class Utilitarios {
         return age;
 
     }
+    public static int [] totaisVotacao(int[][]votospartido, int npartidos, int[]totaisvotacao){
+        for(int i=0; i<totaisvotacao.length;i++){
+            totaisvotacao[i]=0;
+        }
+        for (int j = 0; j < totaisvotacao.length; j++) {
+            for (int k = 0; k < npartidos; k++) {
+                totaisvotacao[j] = totaisvotacao[j] + votospartido[k][j + 1];
+            }
+        }
+        return totaisvotacao;
+        
+    }
 }

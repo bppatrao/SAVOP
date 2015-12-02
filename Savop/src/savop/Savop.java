@@ -160,11 +160,8 @@ public class Savop {
         String[] cabecalhotabela = new String[]{"PARTIDOS", "VOTOS A FAVOR", "VOTOS CONTRA", "ABSTENÇOES"};
         String[] cabecalhotabelab = new String[]{"===========", "===========", "===========", "==========="};
                 
-        for (int i = 0; i < totaisvotacao.length; i++) {
-            for (int j = 0; j < npartidos; j++) {
-                totaisvotacao[i] = totaisvotacao[i] + votospartido[j][i + 1];
-            }
-        }
+        totaisvotacao=Utilitarios.totaisVotacao(votospartido, npartidos, totaisvotacao);
+        
         Formatter pag = new Formatter(new File(nomeFich));
 
         PaginaHtml.iniciarPagina(pag, titulo);
@@ -303,11 +300,7 @@ public class Savop {
      */
     private static void listagemResultadosVotacoes(String assuntovotado, String[] partidos, int[][] votospartido, int npartidos, int[] totaisvotacao) {
         int contPaginas = 0;
-        for (int i = 0; i < totaisvotacao.length; i++) {
-            for (int j = 0; j < npartidos; j++) {
-                totaisvotacao[i] = totaisvotacao[i] + votospartido[j][i + 1];
-            }
-        }
+        totaisvotacao=Utilitarios.totaisVotacao(votospartido, npartidos, totaisvotacao);
         for (int i = 0; i < npartidos; i++) {
             if (i % MAX_LINHAS_PAGINA == 0) {
                 if (contPaginas > 0) {

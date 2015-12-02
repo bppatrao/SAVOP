@@ -113,14 +113,12 @@ public class Utilitarios {
         }
     }
 
-    public static int limpaVotacoes(char[] votacoes) {
+    public static void limpaVotacoes(char[] votacoes) {
         int i = 0;
         char F = 'F';
         for (i = 0; i < votacoes.length; i++) {
             votacoes[i] = F;
-        }
-        return i;
-
+        }   
     }
     public static void cabecalhoresultadosfaixaetaria(String assuntovotado) {
         System.out.println(

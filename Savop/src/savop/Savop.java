@@ -54,7 +54,7 @@ public class Savop {
             opcao = menu();
             switch (opcao) {
                 case 1:
-                    ndeputados = lerFicheiro(deputados,escreverlog);
+                    ndeputados = lerFicheiro(deputados, escreverlog);
                     npartidos = partidos(deputados, ndeputados, partidos);
 
                     Utilitarios.continuar();
@@ -80,7 +80,7 @@ public class Savop {
                     out.format("Digite o assunto votado, correspondente ao nome do ficheiro a ler:");
                     assuntovotado = in.nextLine();
                     in.nextLine();
-                    nvotacoes = carregarVotacoes(deputados, assuntovotado, votacoes);
+                    nvotacoes = carregarVotacoes(deputados, assuntovotado, votacoes, escreverlog);
 
                     Utilitarios.continuar();
                     break;
@@ -152,8 +152,13 @@ public class Savop {
     }
 
     /**
-     * Criar Pagina HTML com resulde votação por partido
-     *
+     * Método responsável por Criar Pagina HTML com resultado da votação por partido
+     * 
+     * @param nomeFich nome do ficheiro a guardar em HTML
+     * @param titulo Titulo da pagina HTLM
+     * @param cabecalho Cabecalho da pagina HTLM
+     * @param cabecalhotabela Cabeçalho da tabela dos valores apresentados
+     * @param cabeçalhotabelab Divisão entre cabeçalho e dados
      *
      */
     private static void criarPaginaHTML(String assuntovotado, int[][] votospartido, int npartidos, String[] partidos, int[] totaisvotacao) throws FileNotFoundException {
@@ -181,8 +186,9 @@ public class Savop {
 
     /**
      * Listagem para ecrã dos Resultados das votações por Faixa Etária
-     *
-     *
+     * 
+     *@param contPagina - variável utilizada para controlo da paginação
+     * pretendida
      */
     private static void listagemResultadosFEtaria(String assuntovotado, int[][] votosfaixaetaria) {
         int contPaginas = 0;
@@ -270,7 +276,7 @@ public class Savop {
     }
 
     /**
-     * Metodo responsável guardar em Ficheiro os Resultados das Votacoes
+     * Metodo responsável guardar num Ficheiro txt os Resultados das Votacoes
      *
      * @param nomeFich - nome pelo qual vai ser guardado o ficheiro
      * @param escreverfich- objecto responsavél por escrever do respectivo
@@ -365,6 +371,7 @@ public class Savop {
      *
      * @param votacao - valor da votacao utilizada no switch para salvaguardar
      * no respectivo partido
+     * @return a matriz de votospartido
      */
     private static int[][] votosPorPartido(String[][] deputados, int ndeputados, String[] partidos, int npartidos, char[] votacoes, int[][] votospartido) {
         char votacao;
@@ -396,11 +403,12 @@ public class Savop {
     }
 
     /**
-     * Metodo responsável por preencher array de partidos existentes
+     * Metodo partidos é responsável por preencher array de partidos existentes nos deputados
      *
-     * @param partido -
-     * @param votacao - valor da votacao utilizada no switch para salvaguardar
-     * na respectiva faixa etária
+     * @param partidodeputado guardar o partido do deputado
+     * @param partido partido lido do vetor partidos para validar se já existe ou não
+     * @param npartidos numero de partigos defirentes dos deputados
+     * @param auxcont é uma flag para verificar se o partido já existe na vector
      */
     private static int partidos(String[][] deputados, int ndeputados, String[] partidos) {
         String partidodeputado, partido;
@@ -422,6 +430,12 @@ public class Savop {
         return npartidos;
     }
 
+    /**
+     * O metodo listaDeputadosvotacoes vai listar os deputados com a paginacao de 10
+     * linhas que quem votação registada
+     *
+     * @param contPaginas acumula todas as paginas listadas
+     */
     private static void listaDeputadosvotacoes(String[][] deputadosvotacoes, int auxnvotacoes) {
         int contPaginas = 0;
         for (int i = 0; i < auxnvotacoes; i++) {
@@ -438,6 +452,12 @@ public class Savop {
         }
     }
 
+    /**
+     * O metodo listaDeputados vai listar os deputados com a paginacao de 10
+     * linhas
+     *
+     * @param contPaginas acumula todas as paginas listadas
+     */
     private static void listaDeputados(String[][] deputados, int ndeputados) {
         int contPaginas = 0;
         for (int i = 0; i < ndeputados; i++) {
@@ -454,18 +474,23 @@ public class Savop {
         }
     }
 
-    public static int carregarVotacoes(String[][] deputados, String assuntovotado, char[] votacoes) throws FileNotFoundException {
-        /**
-         * O metodo lerFicheiro vai receber como parametro vetor vazio ler todos
-         * os dados do ficheiro deputados.txt Com a utilização do metodo
-         * guardarDadosDeputado guarda os dados no vetor vazio recebido Retorna
-         * o número de linhas lidas
-         */
-        int nvotacoes = 0, pos = 0, validalimpezavotacoes = 0;
+    /**
+     * O metodo carregarVotacoes vai receber como parametro vetor das votacoes o
+     * vector dos deputados e a string do assunto votado
+     *
+     * @param nvotacoes acumula todas as votações validas guardadas
+     * @param pos é a posição correspondente ao deputado com votação
+     * @param votacao guarda a votação lida
+     * @param filevotacoes é o nome do ficheiro que corresponde ao assunto
+     * votado + ".txt"
+     * @return o numero de votações lidas com sucesso
+     */
+    public static int carregarVotacoes(String[][] deputados, String assuntovotado, char[] votacoes, Formatter escreverlog) throws FileNotFoundException {
+        int nvotacoes = 0, pos;
         String id, filevotacoes;
         char votacao;
         filevotacoes = assuntovotado + ".txt";
-        validalimpezavotacoes = Utilitarios.limpaVotacoes(votacoes);
+        Utilitarios.limpaVotacoes(votacoes);
         Scanner lerfic = new Scanner(new File(filevotacoes));
         while (lerfic.hasNext() && nvotacoes < MAX_DEPUTADOS) {
             String linha = lerfic.nextLine();
@@ -478,7 +503,8 @@ public class Savop {
                     votacoes[pos] = votacao;
                     nvotacoes++;
                 } else {
-                    //out.format("Erro");
+                    String erro = "O Depitado " + id + " não existe";
+                    LogErros.guardarFicheiroErros(erro, escreverlog);
                 }
             }
 
@@ -487,6 +513,15 @@ public class Savop {
         return nvotacoes;
     }
 
+    /**
+     * O metodo alteraDadosDeputado recebe a opção escolhida no metodo
+     * menuAlterarDadosDeputado e permite ao utilizador efectuar a devida
+     * alteração
+     *
+     * @param posição procura por id o deputado com a ajuda do metodo
+     * Utilitarios.procurarDeputados
+     * @return true ou false mediande a alteração efetuada com sucesso ou não
+     */
     private static boolean alteraDadosDeputado(String[][] deputados, String id) {
         int posicao = Utilitarios.procurarDeputados(deputados, id), opcao;
         if (posicao != -1) {
@@ -522,6 +557,12 @@ public class Savop {
         return true;
     }
 
+    /**
+     * O metodo menuAlterarDadosDeputado apresenta diversas opções de alteração
+     * de dados dos deputados
+     *
+     * @return opção escolhida
+     */
     private static int menuAlterarDadosDeputado(String[] deputados) {
         out.format("%6s-%30s-%7s-%12s%n", deputados[0], deputados[1], deputados[2], deputados[3]);
 
@@ -538,13 +579,17 @@ public class Savop {
     }
 
     /**
-     * O metodo guardarDeputados é o responsável por guardar os dados lidos
-     * anteriormente de uma string acumulando num vetor de dados temporários
-     * essa mesma string partida por ; O vetor deputados guarda os dados
-     * recebidos do temporário Retorna o número de linhas gravadas correctamente
+     * O metodo guardarDeputados é o responsável por guardar os dados recebido
+     * pore parametro do metodo lerFicheiro
+     *
+     * @param dadostemporarios acumula dados temporários da string dividida por
+     * ";"
+     * @param linhaslidas corresponde a todas as linhas lidas válidas e não
+     * válidas
+     * @return numero de linhas lidas com sucesso
      */
     private static int guardarDeputados(String linha, String[][] deputados, int nDeputados, Formatter escreverlog) throws FileNotFoundException {
-        int linhaslidas=0;
+        int linhaslidas = 0;
         String[] dadostemporarios = linha.split(";");
         if (dadostemporarios.length == 4) {
             String id = dadostemporarios[0].trim();
@@ -556,20 +601,21 @@ public class Savop {
                 deputados[nDeputados][3] = dadostemporarios[3].trim();
                 nDeputados++;
             } else {
-                String erro= "A linha "+linhaslidas+" é uma linha inválida"; 
-                LogErros.guardarFicheiroErros(erro,escreverlog);
+                String erro = "A linha " + linhaslidas + " é uma linha inválida";
+                LogErros.guardarFicheiroErros(erro, escreverlog);
             }
         } else {
-            String erro= "A linha "+linhaslidas+" é uma linha inválida"; 
-            LogErros.guardarFicheiroErros(erro,escreverlog);
+            String erro = "A linha " + linhaslidas + " é uma linha inválida";
+            LogErros.guardarFicheiroErros(erro, escreverlog);
         }
         return nDeputados;
     }
 
     /**
      * O metodo lerFicheiro vai receber como parametro vetor vazio ler todos os
-     * dados do ficheiro deputados.txt 
-     * Com a utilização do metodo guardarDadosDeputado guarda os dados no vetor vazio recebido
+     * dados do ficheiro deputados.txt Com a utilização do metodo
+     * guardarDadosDeputado guarda os dados no vetor vazio recebido
+     *
      * @param nDeputados indica o numero de deputados válidos lido
      */
     private static int lerFicheiro(String[][] deputados, Formatter escreverlog) throws FileNotFoundException {

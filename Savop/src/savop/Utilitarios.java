@@ -44,13 +44,13 @@ public class Utilitarios {
     public static boolean validaNome(String nome) {
 
         if ("".equals(nome)) {
-            System.out.println("O campo não pode ficar em branco!");
+            //System.out.println("O campo não pode ficar em branco!");
             return false;
         } else if (nome.matches("\\p{Alpha}*")) {
-            System.out.println("Nome Validado!");
+            //System.out.println("Nome Validado!");
             return true;
         } else {
-            System.out.println("O nome só pode conter Letras");
+            //System.out.println("O nome só pode conter Letras");
             return false;
         }
     }
@@ -69,7 +69,7 @@ public class Utilitarios {
     }
 
     public static boolean validadeDataDeNascimento(String datadenascimento) throws java.text.ParseException {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("yyyyMMdd");
         Calendar cal = new GregorianCalendar();
 
         /**
@@ -80,10 +80,11 @@ public class Utilitarios {
         /**
          * separando os dados da string para comparacao e validacao
          */
-        String[] data = datadenascimento.split("-");
-        String ano = data[0];
-        String mes = data[1];
-        String dia = data[2];
+        
+        String ano = datadenascimento.substring(0,4);
+        String mes = datadenascimento.substring(4,6);
+        String dia = datadenascimento.substring(6,8);
+        
 
         /**
          * testando se ha discrepancia entre a data que foi inserida no

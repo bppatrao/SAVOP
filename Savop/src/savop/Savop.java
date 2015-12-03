@@ -7,6 +7,7 @@ package savop;
 
 import java.io.FileNotFoundException;
 import java.io.File;
+import java.text.ParseException;
 import java.util.Formatter;
 import java.util.Scanner;
 
@@ -41,7 +42,7 @@ public class Savop {
      *
      *
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
         int ndeputados = 0, npartidos = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
         boolean valida = false;
         File logErros = LogErros.criarLogErros();
@@ -155,6 +156,7 @@ public class Savop {
                     if (opcao != 0) {
                         out.format("%n%s%n", "Opção Incorrecta.");
                     } else {
+                        escreverlog.close();
                         out.format("%n%s%n", "Saiu");
                     }
                     break;
@@ -681,24 +683,56 @@ public class Savop {
      * válidas
      * @return numero de linhas lidas com sucesso
      */
-    private static int guardarDeputados(String linha, String[][] deputados, int nDeputados, Formatter escreverlog) throws FileNotFoundException {
-        int linhaslidas = 0;
+    private static int guardarDeputados(String linha, String[][] deputados, int nDeputados, Formatter escreverlog) throws FileNotFoundException, ParseException {
         String[] dadostemporarios = linha.split(";");
+        boolean idvalido=false;
+        boolean nomevalido=false;
+        boolean partidovalido=false;
+        boolean datanascimentovalida=false;
         if (dadostemporarios.length == 4) {
-            String id = dadostemporarios[0].trim();
-            linhaslidas++;
-            if (id.length() == 5) {
-                deputados[nDeputados][0] = id;
-                deputados[nDeputados][1] = dadostemporarios[1].trim();
-                deputados[nDeputados][2] = dadostemporarios[2].trim();
-                deputados[nDeputados][3] = dadostemporarios[3].trim();
-                nDeputados++;
+            String auxid = dadostemporarios[0].trim();
+            String auxnome = dadostemporarios[1].trim();
+            String auxpartido = dadostemporarios[2].trim();
+            String auxdatanascimento = dadostemporarios[3].trim();
+            if (auxid.length() == 5) {
+                idvalido=true;
+                //deputados[nDeputados][0] = id;
+                //nDeputados++;
             } else {
-                String erro = "A linha " + linhaslidas + " é uma linha inválida";
+                idvalido=false;
+                String erro = "O ID:" + auxid + " presente no ficheiro deputados.txt não apresenta um formato válido!";
                 LogErros.guardarFicheiroErros(erro, escreverlog);
             }
+            if (Utilitarios.validaNome(auxnome)){
+                nomevalido=true;
+            }else{
+                nomevalido=false;
+                String erro = "O nome" + auxnome + " presente no ficheiro deputados.txt não apresenta um formato válido!";
+                LogErros.guardarFicheiroErros(erro, escreverlog);
+            }
+            if (Utilitarios.validaNome(auxpartido)){
+                partidovalido=true;
+            }else{
+                partidovalido=false;
+                String erro = "O nome" + auxpartido + " presente no ficheiro deputados.txt não apresenta um formato válido!";
+                LogErros.guardarFicheiroErros(erro, escreverlog);
+            }
+            if (Utilitarios.validadeDataDeNascimento(auxdatanascimento)){
+                datanascimentovalida=true;
+            }else{
+                datanascimentovalida=false;
+                String erro = "A data de nascimento " + auxdatanascimento + " presente no ficheiro deputados.txt não apresenta um formato válido yyyyMMdd!";
+                LogErros.guardarFicheiroErros(erro, escreverlog);
+            }
+            if(idvalido==true && nomevalido==true && partidovalido==true && datanascimentovalida==true){
+                deputados[nDeputados][0] = auxid;
+                deputados[nDeputados][1] = auxnome;
+                deputados[nDeputados][2] = auxpartido;
+                deputados[nDeputados][3] = auxdatanascimento;
+            }
+            
         } else {
-            String erro = "A linha " + linhaslidas + " é uma linha inválida";
+            String erro = "A linha " + linha + " presente no ficheiro deputados.txt é uma linha inválida!";
             LogErros.guardarFicheiroErros(erro, escreverlog);
         }
         return nDeputados;
@@ -711,15 +745,19 @@ public class Savop {
      *
      * @param nDeputados indica o numero de deputados válidos lido
      */
-    private static int lerFicheiro(String[][] deputados, Formatter escreverlog) throws FileNotFoundException {
+    private static int lerFicheiro(String[][] deputados, Formatter escreverlog) throws FileNotFoundException, ParseException {
 
-        int nDeputados = 0;
+        int nDeputados = 0,linhaslidas=0;
         Scanner lerfic = new Scanner(new File(FILE_DEPUTADOS));
         while (lerfic.hasNext() && nDeputados < MAX_DEPUTADOS) {
             String linha = lerfic.nextLine();
+            linhaslidas++;
             // teste para verificar a linha ignorando as linhas vazias
-            if (linha.length() > 0) {
+            if (linha.length()>0) {
                 nDeputados = guardarDeputados(linha, deputados, nDeputados, escreverlog);
+            }else{
+                String erro = "A linha " + linhaslidas + " no ficheiro "+FILE_DEPUTADOS+" é uma linha vazia";
+                LogErros.guardarFicheiroErros(erro, escreverlog);
             }
         }
         lerfic.close();

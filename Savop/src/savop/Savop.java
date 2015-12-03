@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.Formatter;
 import java.util.Scanner;
-import static savop.Utilitarios.procurarDeputados;
 
 /**
  *
@@ -26,19 +25,24 @@ public class Savop {
     public static Scanner in = new Scanner(System.in);
 
     /**
-     * Metodo Main / Principal é onde iniciamos o programa e contrloamos todas as opções
-     * 
-     * @param ndeputados armazena o numero de deputados lidos do ficheiro deputados
-     * @param npartidos armazena o numero diferente de partidos existentes no ficheiro deputados
+     * Metodo Main / Principal é onde iniciamos o programa e contrloamos todas
+     * as opções
+     *
+     * @param ndeputados armazena o numero de deputados lidos do ficheiro
+     * deputados
+     * @param npartidos armazena o numero diferente de partidos existentes no
+     * ficheiro deputados
      * @param opcao do menu escolhida
      * @param nvotacoes numero de votacoes lidas com sucesso
-     * @param auxvotacoes é o numero de votacoes encontradas por e utilizo para no valor para as organizar
-     * @param valida é uma validação para controlar o sucesso da alteração dos dados do deputado
-     * 
-     * 
+     * @param auxvotacoes é o numero de votacoes encontradas por e utilizo para
+     * no valor para as organizar
+     * @param valida é uma validação para controlar o sucesso da alteração dos
+     * dados do deputado
+     *
+     *
      */
     public static void main(String[] args) throws FileNotFoundException {
-        int ndeputados = 0, npartidos = 0, opcao, nvotacoes=0, auxnvotacoes = 0;
+        int ndeputados = 0, npartidos = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
         boolean valida = false;
         File logErros = LogErros.criarLogErros();
         Formatter escreverlog = new Formatter(logErros);
@@ -48,7 +52,7 @@ public class Savop {
         String[] partidos;
         int[][] votospartido;
         int[] totaisvotacao;
-        int[][] votosfaixaetaria;
+        double[][] votosfaixaetaria;
         char[] votacoes;
         deputados = new String[MAX_DEPUTADOS][4];
         deputadosvotacoes = new String[MAX_DEPUTADOS][4];
@@ -67,54 +71,84 @@ public class Savop {
                     Utilitarios.continuar();
                     break;
                 case 2:
-                    listaDeputados(deputados, ndeputados);
-
+                    if (ndeputados == 0) {
+                        out.format("\nNão é possivel listar os dados pretendidos, pois não tem qualquer deputado carregado em sistema. Ponto 1");
+                    } else {
+                        listaDeputados(deputados, ndeputados);
+                    }
                     Utilitarios.continuar();
                     break;
                 case 3:
-                    out.format("Digite o ID do Deputado do qual pretende alterar os dados:");
-                    id = in.nextLine();
-                    in.nextLine();
-                    valida = alteraDadosDeputado(deputados, id);
-                    if (valida = true) {
-                        out.format("Deputado alterado com sucesso");
+                    if (ndeputados == 0) {
+                        out.format("\nNão é possivel alterar os dados pretendidos pois não tem qualquer deputado carregado em sistema. Ponto 1");
                     } else {
-                        out.format("Deputado não alterado");
+                        out.format("\nDigite o ID do Deputado do qual pretende alterar os dados:");
+                        id = in.nextLine();
+                        valida = alteraDadosDeputado(deputados, id);
+                        if (valida == true) {
+                            out.format("Deputado alterado com sucesso");
+                        } else {
+                            out.format("Deputado não alterado");
+                        }
                     }
                     Utilitarios.continuar();
                     break;
                 case 4:
-                    out.format("Digite o assunto votado, correspondente ao nome do ficheiro a ler:");
-                    assuntovotado = in.nextLine();
-                    in.nextLine();
-                    nvotacoes = carregarVotacoes(deputados, assuntovotado, votacoes, escreverlog);
-
+                    if (ndeputados == 0) {
+                        out.format("\nNão é possivel alterar os dados pretendidos pois não tem qualquer deputado carregado em sistema. Ponto 1");
+                    } else {
+                        do {
+                            out.format("\nDigite o assunto votado, correspondente ao nome do ficheiro a ler (0 para cancelar):");
+                            assuntovotado = in.nextLine();
+                        } while (assuntovotado.length() == 0 && !assuntovotado.equals("0"));
+                        if (!assuntovotado.equals("0")) {
+                            nvotacoes = carregarVotacoes(deputados, assuntovotado, votacoes, escreverlog);
+                        } else {
+                            out.format("\nOptou por cancelar a leitura:");
+                        }
+                    }
                     Utilitarios.continuar();
                     break;
                 case 5:
-                    auxnvotacoes = Utilitarios.deputadosVotacoes(votacoes, deputados, deputadosvotacoes, ndeputados);
-                    listaDeputadosvotacoes(deputadosvotacoes, auxnvotacoes);
+                    if (nvotacoes > 0) {
+                        auxnvotacoes = deputadosVotacoes(votacoes, deputados, deputadosvotacoes, ndeputados);
+                        listaDeputadosvotacoes(deputadosvotacoes, auxnvotacoes);
+                    } else {
+                        out.format("\nPara obter esta listagem necessita que os deputados Ponto 1, e votacao Ponto 4 estejam carregados");
+                    }
                     Utilitarios.continuar();
                     break;
                 case 6:
-                    votospartido = new int[npartidos][4];
-                    votospartido = votosPorPartido(deputados, ndeputados, partidos, npartidos, votacoes, votospartido);
-                    ordenarVotosPorPartido(votospartido, partidos, npartidos);
-                    listagemResultadosVotacoes(assuntovotado, partidos, votospartido, npartidos, totaisvotacao);
-                    guardarListagemResultadosVotacoes(assuntovotado, partidos, votospartido, npartidos, totaisvotacao);
+                    if (nvotacoes > 0) {
+                        votospartido = new int[npartidos][4];
+                        votospartido = votosPorPartido(deputados, ndeputados, partidos, npartidos, votacoes, votospartido);
+                        ordenarVotosPorPartido(votospartido, partidos, npartidos);
+                        listagemResultadosVotacoes(assuntovotado, partidos, votospartido, npartidos, totaisvotacao);
+                        guardarListagemResultadosVotacoes(assuntovotado, partidos, votospartido, npartidos, totaisvotacao);
+                    } else {
+                        out.format("\nPara obter esta listagem necessita que os deputados Ponto 1, e votacao Ponto 4 estejam carregados");
+                    }
                     Utilitarios.continuar();
                     break;
                 case 7:
-                    votosfaixaetaria = new int[3][3];
-                    votosfaixaetaria = votosPorFaixaEtaria(deputados, ndeputados, votacoes, votosfaixaetaria);
-                    listagemResultadosFEtaria(assuntovotado, votosfaixaetaria);
+                    if (nvotacoes > 0) {
+                        votosfaixaetaria = new double [3][3];
+                        votosfaixaetaria = votosPorFaixaEtaria(deputados, ndeputados, votacoes, votosfaixaetaria,nvotacoes);
+                        listagemResultadosFEtaria(assuntovotado, votosfaixaetaria);
+                    } else {
+                        out.format("\nPara obter esta listagem necessita que os deputados Ponto 1, e votacao Ponto 4 estejam carregados");
+                    }
                     Utilitarios.continuar();
                     break;
                 case 8:
-                    votospartido = new int[npartidos][4];
-                    votospartido = votosPorPartido(deputados, ndeputados, partidos, npartidos, votacoes, votospartido);
-                    ordenarVotosPorPartido(votospartido, partidos, npartidos);
-                    criarPaginaHTML(assuntovotado, votospartido, npartidos, partidos, totaisvotacao);
+                    if (nvotacoes > 0) {
+                        votospartido = new int[npartidos][4];
+                        votospartido = votosPorPartido(deputados, ndeputados, partidos, npartidos, votacoes, votospartido);
+                        ordenarVotosPorPartido(votospartido, partidos, npartidos);
+                        criarPaginaHTML(assuntovotado, votospartido, npartidos, partidos, totaisvotacao);
+                    } else {
+                        out.format("\nPara obter esta listagem necessita que os deputados Ponto 1, e votacao Ponto 4 estejam carregados");
+                    }
                     Utilitarios.continuar();
                     break;
                 default:
@@ -123,7 +157,6 @@ public class Savop {
                     } else {
                         out.format("%n%s%n", "Saiu");
                     }
-                    Utilitarios.continuar();
                     break;
 
             }
@@ -145,7 +178,7 @@ public class Savop {
                 + "\n| Visualizar toda a informação existente em memória.................( 2 )..|"
                 + "\n| Actualizar/Alterar informações sobre um deputado..................( 3 )..|"
                 + "\n| Carregar Ficheiro de Texto sobre uma determinado votação..........( 4 )..|"
-                + "\n| Visualizar a informação dos deputados devidamente ordenada........( 5 )..|"
+                + "\n| Visualizar no ecrã os deputados VS votacao devidamente ordenada...( 5 )..|"
                 + "\n| Visualizar no ecrã os resultados da última votação introduzida....( 6 )..|"
                 + "\n| Visualizar votação os resultados obtidos em função da faixa etária( 7 )..|"
                 + "\n| Criar uma página HTML com a informação obtida no ponto 6..........( 8 )..|"
@@ -159,8 +192,9 @@ public class Savop {
     }
 
     /**
-     * Método responsável por Criar Pagina HTML com resultado da votação por partido
-     * 
+     * Método responsável por Criar Pagina HTML com resultado da votação por
+     * partido
+     *
      * @param nomeFich nome do ficheiro a guardar em HTML
      * @param titulo Titulo da pagina HTLM
      * @param cabecalho Cabecalho da pagina HTLM
@@ -193,24 +227,24 @@ public class Savop {
 
     /**
      * Listagem para ecrã dos Resultados das votações por Faixa Etária
-     * 
-     *@param contPagina - variável utilizada para controlo da paginação
+     *
+     * @param contPagina - variável utilizada para controlo da paginação
      * pretendida
      */
-    private static void listagemResultadosFEtaria(String assuntovotado, int[][] votosfaixaetaria) {
+    private static void listagemResultadosFEtaria(String assuntovotado, double[][] votosfaixaetaria) {
         int contPaginas = 0;
         Utilitarios.cabecalhoresultadosfaixaetaria(assuntovotado);
-        System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "<35anos",
-                votosfaixaetaria[0][0], votosfaixaetaria[0][1], votosfaixaetaria[0][2]);
+        System.out.printf("%-20s# %-15.2f# %-15.2f# %-15.2f%n","<35anos",
+                votosfaixaetaria[0][0],votosfaixaetaria[0][1],votosfaixaetaria[0][2]);
 
         System.out.println(
                 "=================================================================");
-        System.out.printf("%-20s||%-15s||%-15s||%-15s%n", ">=35anos e <=60anos",
+        System.out.printf("%-20s# %-15.2f# %-15.2f# %-15.2f%n", ">=35anos e <=60anos",
                 votosfaixaetaria[1][0], votosfaixaetaria[1][1], votosfaixaetaria[1][2]);
 
         System.out.println(
                 "=================================================================");
-        System.out.printf("%-20s||%-15s||%-15s||%-15s%n", ">60anos",
+        System.out.printf("%-20s# %-15.2f# %-15.2f# %-15.2f%n", ">60anos",
                 votosfaixaetaria[2][0], votosfaixaetaria[2][1], votosfaixaetaria[2][2]);
 
         System.out.println(
@@ -225,7 +259,7 @@ public class Savop {
      * @param votacao - valor da votacao utilizada no switch para salvaguardar
      * na respectiva faixa etária
      */
-    private static int[][] votosPorFaixaEtaria(String[][] deputados, int ndeputados, char[] votacoes, int[][] votosfaixaetaria) {
+    private static double[][] votosPorFaixaEtaria(String[][] deputados, int ndeputados, char[] votacoes, double[][] votosfaixaetaria, int nvotacoes) {
         int idade;
         char votacao;
         for (int i = 0; i < ndeputados; i++) {
@@ -279,6 +313,7 @@ public class Savop {
 
             }
         }
+        votosfaixaetaria=Utilitarios.passarPercentagem(votosfaixaetaria,nvotacoes);
         return votosfaixaetaria;
     }
 
@@ -295,17 +330,17 @@ public class Savop {
         escreverfich.format("%n%s%n", "Resultados: " + assuntovotado);
         escreverfich.format(
                 "#================  Resultados " + assuntovotado + "  =====================#%n");
-        escreverfich.format("%-20s||%-15s||%-15s||%-15s%n", "PARTIDO", "VOTOS A FAVOR",
+        escreverfich.format("%-20s# %-15s# %-15s# %-15s%n", "PARTIDO", "VOTOS A FAVOR",
                 "VOTOS CONTRA", "ABSTENÇOES");
         escreverfich.format(
                 "=================================================================%n");
         for (int i = 0; i < npartidos; i++) {
-            escreverfich.format("%-20s||%-15s||%-15s||%-15s%n", partidos[i],
+            escreverfich.format("%-20s# %-15s# %-15s# %-15s%n", partidos[i],
                     votospartido[i][1], votospartido[i][2], votospartido[i][3]);
         }
         escreverfich.format(
                 "=================================================================%n");
-        escreverfich.format("%-20s||%-15s||%-15s||%-15s%n", "Totais Votação",
+        escreverfich.format("%-20s# %-15s# %-15s# %-15s%n", "Totais Votação",
                 totaisvotacao[0], totaisvotacao[1], totaisvotacao[2]);
         escreverfich.format(
                 "=================================================================");
@@ -331,12 +366,12 @@ public class Savop {
                 System.out.println("\nPÁGINA: " + contPaginas);
                 Utilitarios.cabecalhoresultadosvotacoes(assuntovotado);
             }
-            System.out.printf("%-20s||%-15s||%-15s||%-15s%n", partidos[i],
+            System.out.printf("%-20s# %-15s# %-15s# %-15s%n", partidos[i],
                     votospartido[i][1], votospartido[i][2], votospartido[i][3]);
         }
         System.out.println(
                 "=================================================================");
-        System.out.printf("%-20s||%-15s||%-15s||%-15s%n", "Totais Votação",
+        System.out.printf("%-20s# %-15s# %-15s# %-15s%n", "Totais Votação",
                 totaisvotacao[0], totaisvotacao[1], totaisvotacao[2]);
         System.out.println(
                 "=================================================================");
@@ -410,10 +445,12 @@ public class Savop {
     }
 
     /**
-     * Metodo partidos é responsável por preencher array de partidos existentes nos deputados
+     * Metodo partidos é responsável por preencher array de partidos existentes
+     * nos deputados
      *
      * @param partidodeputado guardar o partido do deputado
-     * @param partido partido lido do vetor partidos para validar se já existe ou não
+     * @param partido partido lido do vetor partidos para validar se já existe
+     * ou não
      * @param npartidos numero de partigos defirentes dos deputados
      * @param auxcont é uma flag para verificar se o partido já existe na vector
      */
@@ -438,8 +475,8 @@ public class Savop {
     }
 
     /**
-     * O metodo listaDeputadosvotacoes vai listar os deputados com a paginacao de 10
-     * linhas que quem votação registada
+     * O metodo listaDeputadosvotacoes vai listar os deputados com a paginacao
+     * de 10 linhas que quem votação registada
      *
      * @param contPaginas acumula todas as paginas listadas
      */
@@ -454,7 +491,7 @@ public class Savop {
                 System.out.println("\nPÁGINA: " + contPaginas);
                 Utilitarios.cabecalholistavotacoes();
             }
-            System.out.printf("%-6s||%-30s||%-10s||%-6s%n", deputadosvotacoes[i][0],
+            System.out.printf("%-6s# %-30s# %-10s# %-6s%n", deputadosvotacoes[i][0],
                     deputadosvotacoes[i][1], deputadosvotacoes[i][2], deputadosvotacoes[i][3]);
         }
     }
@@ -482,6 +519,46 @@ public class Savop {
     }
 
     /**
+     * O metodo deputadosVotacoes vai ser responsável por preencher a matriz
+     * deputadosvotacoes com as respetivas votacões anteriormente lidas
+     *
+     */
+    public static int deputadosVotacoes(char[] votacoes, String[][] deputados, String[][] deputadosvotacoes, int ndeputados) {
+        int i = 0, votacoesencontradas = 0;
+        String nomeabreviado;
+        for (i = 0; i < votacoes.length; i++) {
+            if (votacoes[i] != 'F') {
+                deputadosvotacoes[votacoesencontradas][0] = deputados[i][0];
+                nomeabreviado = Utilitarios.nomePrimeiroUltimo(deputados[i][1]);
+                deputadosvotacoes[votacoesencontradas][1] = nomeabreviado;
+                deputadosvotacoes[votacoesencontradas][2] = deputados[i][2];
+                deputadosvotacoes[votacoesencontradas][3] = String.valueOf(votacoes[i]);
+                votacoesencontradas++;
+            }
+        }
+        ordenarDeputadosVotacoes(deputadosvotacoes, votacoesencontradas);
+        return votacoesencontradas;
+    }
+
+    /**
+     * O metodo ordenarDeputadosVotacoes é responsável por ordenar a matriz
+     * deputadosvotacoes pelo ID do deputado
+     *
+     */
+    public static void ordenarDeputadosVotacoes(String[][] deputadosvotacoes, int votacoesencontradas) {
+        for (int i = 0; i < votacoesencontradas - 1; i++) {
+            for (int j = i + 1; j < votacoesencontradas; j++) {
+                if (deputadosvotacoes[i][0].compareTo(deputadosvotacoes[j][0]) > 0) {
+                    String[] tmp = deputadosvotacoes[i];
+                    deputadosvotacoes[i] = deputadosvotacoes[j];
+                    deputadosvotacoes[j] = tmp;
+
+                }
+            }
+        }
+    }
+
+    /**
      * O metodo carregarVotacoes vai receber como parametro vetor das votacoes o
      * vector dos deputados e a string do assunto votado
      *
@@ -504,7 +581,7 @@ public class Savop {
             linha = linha.trim();
             if (linha.length() > 0) {
                 id = linha.substring(0, 5);
-                pos = procurarDeputados(deputados, id);
+                pos = Utilitarios.procurarDeputados(deputados, id);
                 if (pos != -1) {
                     votacao = linha.charAt(5);
                     votacoes[pos] = votacao;
@@ -526,11 +603,13 @@ public class Savop {
      * alteração
      *
      * @param posição procura por id o deputado com a ajuda do metodo
+     * @param alterado valida se a alteração e efetuada com sucesso
      * Utilitarios.procurarDeputados
      * @return true ou false mediande a alteração efetuada com sucesso ou não
      */
     private static boolean alteraDadosDeputado(String[][] deputados, String id) {
         int posicao = Utilitarios.procurarDeputados(deputados, id), opcao;
+        boolean alterado = false;
         if (posicao != -1) {
             do {
                 opcao = menuAlterarDadosDeputado(deputados[posicao]);
@@ -538,30 +617,37 @@ public class Savop {
                     case 1:
                         out.format("Novo Nome:");
                         deputados[posicao][1] = in.nextLine();
+                        alterado = true;
                         break;
                     case 2:
                         out.format("Novo partido:");
                         deputados[posicao][2] = in.nextLine();
+                        alterado = true;
                         break;
                     case 3:
                         out.format("Alterar Data de nascimento");
                         deputados[posicao][3] = in.nextLine();
+                        alterado = true;
                         break;
                     default:
                         if (opcao != 0) {
                             out.format("%n%s%n", "Opção Incorrecta.");
+                            alterado = false;
                         } else {
                             out.format("%n%s%n", "Saiu");
                         }
-                        Utilitarios.continuar();
                         break;
                 }
             } while (opcao != 0);
         } else {
             System.out.printf("O deputado %s não foi encontrado!", id);
+            alterado = false;
+        }
+        if (alterado == true) {
+            return true;
+        } else {
             return false;
         }
-        return true;
     }
 
     /**

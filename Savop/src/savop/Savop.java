@@ -616,19 +616,34 @@ public class Savop {
     private static boolean alteraDadosDeputado(String[][] deputados, String id) {
         int posicao = Utilitarios.procurarDeputados(deputados, id), opcao;
         boolean alterado = false;
+        boolean nomevalido = false;
+        boolean partidovalido = false;
+        boolean datanascimentovalida = false;
         if (posicao != -1) {
             do {
                 opcao = menuAlterarDadosDeputado(deputados[posicao]);
                 switch (opcao) {
                     case 1:
                         out.format("Novo Nome:");
-                        deputados[posicao][1] = in.nextLine();
-                        alterado = true;
+                        String auxnome=in.nextLine();
+                        if(Utilitarios.validaNome(auxnome)){
+                            deputados[posicao][1] = auxnome;
+                            alterado = true;
+                        }else{
+                            out.format("%n%s%n","Nome NÃO foi alterado, pois foi introduzido um nome inválido");
+                        }
+                        Utilitarios.continuar();
                         break;
                     case 2:
                         out.format("Novo partido:");
-                        deputados[posicao][2] = in.nextLine();
-                        alterado = true;
+                        String auxpartido=in.nextLine();
+                        if(Utilitarios.validaPartido(auxpartido)){
+                            deputados[posicao][2] = auxpartido;
+                            alterado = true;
+                        }else{
+                            out.format("%n%s%n","Partido NÃO foi alterado, pois foi introduzido um nome de Partido inválido");
+                        }
+                        Utilitarios.continuar();
                         break;
                     case 3:
                         out.format("Alterar Data de nascimento");
@@ -698,7 +713,8 @@ public class Savop {
             String auxnome = dadostemporarios[1].trim();
             String auxpartido = dadostemporarios[2].trim();
             String auxdatanascimento = dadostemporarios[3].trim();
-            if (auxid.length() == 5) {
+            int t=auxid.length();
+            if (t == 5) {
                 idvalido = true;
                 //deputados[nDeputados][0] = id;
                 //nDeputados++;

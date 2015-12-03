@@ -1,3 +1,0 @@
-
-Ao ler o ficheiro votações LEI_13_2015.txt o deputado VRL01 não existe
-Ao ler o ficheiro votações LEI_13_2015.txt o deputado LIS01 apresenta votacao incorrecta 

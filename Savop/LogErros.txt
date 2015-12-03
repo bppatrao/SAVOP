@@ -1,1 +1,3 @@
-﻿
+
+O ID:﻿VCT01 presente no ficheiro deputados.txt não apresenta um formato válido!
+O nomeAlberto Martin1s presente no ficheiro deputados.txt não apresenta um formato válido!

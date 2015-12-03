@@ -43,16 +43,10 @@ public class Utilitarios {
 
     public static boolean validaNome(String nome) {
 
-        if ("".equals(nome)) {
-            //System.out.println("O campo não pode ficar em branco!");
-            return false;
-        } else if (nome.matches("\\p{Alpha}*")) {
-            //System.out.println("Nome Validado!");
+        if (nome.matches("^[\\p{L} .'-]+$")) {
             return true;
-        } else {
-            //System.out.println("O nome só pode conter Letras");
-            return false;
         }
+        return false;
     }
 
     public static boolean validaPartido(String partido) {

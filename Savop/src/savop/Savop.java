@@ -729,6 +729,7 @@ public class Savop {
                 deputados[nDeputados][1] = auxnome;
                 deputados[nDeputados][2] = auxpartido;
                 deputados[nDeputados][3] = auxdatanascimento;
+                nDeputados++;
             }
             
         } else {

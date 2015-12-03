@@ -19,7 +19,7 @@ public class Savop {
 
     private final static int MAX_DEPUTADOS = 230;
     private final static String FILE_DEPUTADOS = "Deputados.txt";
-    private final static String PAGINA_HTML = "Pagina.html";
+    private final static String PAGINA_HTML = "_Pagina.html";
     private final static int MAX_LINHAS_PAGINA = 10;
 
     public static Formatter out = new Formatter(System.out);
@@ -205,7 +205,7 @@ public class Savop {
      *
      */
     private static void criarPaginaHTML(String assuntovotado, int[][] votospartido, int npartidos, String[] partidos, int[] totaisvotacao) throws FileNotFoundException {
-        String nomeFich = "Resultados_" + assuntovotado + ".html";
+        String nomeFich = "Resultados_"+assuntovotado+PAGINA_HTML;
         String titulo = "RESULTADOS DA VOTACAO " + assuntovotado;
         String cabecalho = "RESULTADOS DA VOTACAO " + assuntovotado;
         String[] cabecalhotabela = new String[]{"PARTIDOS", "VOTOS A FAVOR", "VOTOS CONTRA", "ABSTENÇOES"};

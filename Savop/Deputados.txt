@@ -1,6 +1,6 @@
-﻿VCT01;Abel Baptista;PartidoC;19820522
+VCT01;Abel Baptista;PartidoC;19820522
 BRA01;Adão Silva;PartidoG;19740122
-PRT01;Alberto Martin1s;PartidoF;19790209
+PRT01;Alberto Martins;PartidoF;19790209
 PRT02;Alexandre Quintanilha;PartidoF;19790210
 CST01;Álvaro Batista;PartidoG;19770302
 PRT03;Álvaro Castelo Branco;PartidoC;19790211

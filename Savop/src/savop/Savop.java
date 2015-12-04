@@ -742,11 +742,8 @@ public class Savop {
             String auxnome = dadostemporarios[1].trim();
             String auxpartido = dadostemporarios[2].trim();
             String auxdatanascimento = dadostemporarios[3].trim();
-            int t = auxid.length();
-            if (t == 5) {
+            if (auxid.length() == 5) {
                 idvalido = true;
-                //deputados[nDeputados][0] = id;
-                //nDeputados++;
             } else {
                 idvalido = false;
                 String erro = "O ID: " + auxid + " presente no ficheiro deputados.txt não apresenta um formato válido!";

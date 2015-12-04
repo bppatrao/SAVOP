@@ -3,5 +3,3 @@ O partido Partido1 presente no ficheiro deputados.txt não apresenta um formato 
 A data de nascimento 19810836 presente no ficheiro deputados.txt não é válida ou formato invalido yyyyMMdd!
 O nome Maria Manuel Leit1o Marques presente no ficheiro deputados.txt não apresenta um formato válido!
 O ID: SAN presente no ficheiro deputados.txt não apresenta um formato válido!
-Ao ler o ficheiro votações LEI_13_2015.txt o deputado PRT03 apresenta votacao incorrecta 
-Ao ler o ficheiro votações LEI_13_2015.txt o deputado BRGA0 não existe

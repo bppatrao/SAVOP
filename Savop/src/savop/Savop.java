@@ -64,7 +64,7 @@ public class Savop {
         boolean valida = false;
         File logErros = LogErros.criarLogErros();
         Formatter escreverlog = new Formatter(logErros);
-        String id, assuntovotado;
+        String id, assuntovotado="";
         String[][] deputados;
         String[][] deputadosvotacoes;
         String[] partidos;

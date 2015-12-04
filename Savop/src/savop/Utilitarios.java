@@ -19,8 +19,14 @@ import static savop.Savop.out;
  */
 public class Utilitarios {
 
-    String nome;
-
+    /**
+     * Método procurarDeputados é responsável por procurar o deputado pelo seu
+     * ID e retornar a sua posição na matriz
+     *
+     * @param deputados
+     * @param id
+     * @return posição na matriz
+     */
     public static int procurarDeputados(String[][] deputados, String id) {
         int i = 0;
         boolean encontrado = false;
@@ -40,6 +46,13 @@ public class Utilitarios {
         }
     }
 
+    /**
+     * Método validaNome verifica se a string recebida só contém caracteres Alfa
+     *
+     * @param nome
+     * @return Verdadeiro se o nome só contiver caracteres Alfa o false se isso
+     * não acontecer
+     */
     public static boolean validaNome(String nome) {
         if (nome.matches("^[\\p{L} .'-]+$")) {
             return true;
@@ -47,6 +60,14 @@ public class Utilitarios {
         return false;
     }
 
+    /**
+     * Método validaPartidp verifica se a string recebida só contém caracteres
+     * Alfa
+     *
+     * @param partido
+     * @return Verdadeiro se o Partido só contiver caracteres Alfa o false se
+     * isso não acontecer
+     */
     public static boolean validaPartido(String partido) {
         if (partido.matches("^[\\p{L} .'-]+$")) {
             return true;
@@ -54,6 +75,15 @@ public class Utilitarios {
         return false;
     }
 
+    /**
+     * O método validadeDataDeNascimento verifica se a data enviada como string
+     * apresenta uma data com o formato correcto e se se trata de uma data
+     * válida
+     *
+     * @param datadenascimento string recebida como parametro no método
+     * @return Verdadeiro ou Falso se for uma data inválida
+     * @throws java.text.ParseException
+     */
     public static boolean validadeDataDeNascimento(String datadenascimento) throws java.text.ParseException {
         DateFormat dataemformato = new SimpleDateFormat("yyyyMMdd");
         Calendar calendario = new GregorianCalendar();
@@ -99,6 +129,12 @@ public class Utilitarios {
         }
     }
 
+    /**
+     * Método responsálvel por limpar os dados das votações a F (Falta) antes de
+     * carregar qualquer dado nesse vector
+     *
+     * @param votacoes
+     */
     public static void limpaVotacoes(char[] votacoes) {
         int i = 0;
         char F = 'F';
@@ -107,6 +143,11 @@ public class Utilitarios {
         }
     }
 
+    /**
+     * Cabeçalho da listagem Resultados por Faixa etária
+     *
+     * @param assuntovotado
+     */
     public static void cabecalhoresultadosfaixaetaria(String assuntovotado) {
         System.out.println(
                 "#======== Resultados em % por faixa etária " + assuntovotado + "  =========#");
@@ -116,6 +157,11 @@ public class Utilitarios {
                 "=================================================================");
     }
 
+    /**
+     * Cabeçalho da listagem Resultados das Votações
+     *
+     * @param assuntovotado
+     */
     public static void cabecalhoresultadosvotacoes(String assuntovotado) {
         System.out.println(
                 "#================  Resultados " + assuntovotado + "  =====================#");
@@ -126,6 +172,9 @@ public class Utilitarios {
 
     }
 
+    /**
+     * Cabeçalho da lista de votações
+     */
     public static void cabecalholistavotacoes() {
         System.out.printf("%-6s# %-30s# %-10s# %-6s%n", "ID", "NOME",
                 "PARTIDO", "VOT");
@@ -133,6 +182,9 @@ public class Utilitarios {
                 "#=======================  Listagem Votações  =========================#");
     }
 
+    /**
+     * Cabeçalho da lista de deputados
+     */
     public static void cabecalho() {
         System.out.printf("%-6s# %-30s# %-10s# %-12s%n", "ID", "NOME",
                 "PARTIDO", "DATA NASC");
@@ -140,11 +192,21 @@ public class Utilitarios {
                 "#==========================  Deputados  =============================#");
     }
 
+    /**
+     * Metodo para efectuar uma pausa n passagem de mensagens para o utilizador
+     */
     public static void continuar() {
         out.format("%n%s%n", "\nPara continuar digite (char Enter)");
         in.nextLine();
     }
 
+    /**
+     * Método nomePrimeiroUltimo recebe como parametro nome completo e devolve
+     * 1º e último nome
+     *
+     * @param nomecompleto
+     * @return
+     */
     public static String nomePrimeiroUltimo(String nomecompleto) {
         String nomes[] = nomecompleto.split("\\ ");
         String nome1 = nomes[0];
@@ -153,6 +215,13 @@ public class Utilitarios {
         return nomeabreviado;
     }
 
+    /**
+     * Método calcularIdade calcula a idade mediante a data de nascimento dada
+     * como parametro
+     *
+     * @param datadenascimento
+     * @return
+     */
     public static int calcularIdade(String datadenascimento) {
         DateFormat dataemformato = new SimpleDateFormat("yyyyMMdd");
         Date dataNasc = null;
@@ -175,9 +244,17 @@ public class Utilitarios {
         }
 
         return idade;
-
     }
 
+    /**
+     * Método responsavel por somar o votos por partido e preencher o vector
+     * totais votacao
+     *
+     * @param votospartido
+     * @param npartidos
+     * @param totaisvotacao
+     * @return
+     */
     public static int[] totaisVotacao(int[][] votospartido, int npartidos, int[] totaisvotacao) {
         for (int i = 0; i < totaisvotacao.length; i++) {
             totaisvotacao[i] = 0;
@@ -188,9 +265,16 @@ public class Utilitarios {
             }
         }
         return totaisvotacao;
-
     }
 
+    /**
+     * Método passarPercentagem efectua o calculo da percentagem dos votos
+     * apurados por faixa etária
+     *
+     * @param votosfaixaetaria
+     * @param nvotacoes
+     * @return
+     */
     public static double[][] passarPercentagem(double[][] votosfaixaetaria, int nvotacoes) {
         double percentagem = 0;
         for (int i = 0; i < votosfaixaetaria.length; i++) {

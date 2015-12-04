@@ -198,7 +198,7 @@ public class Savop {
                 + "\n| Actualizar/Alterar informações sobre um deputado..................( 3 )..|"
                 + "\n| Carregar Ficheiro de Texto sobre uma determinado votação..........( 4 )..|"
                 + "\n| Visualizar no ecrã os deputados VS votacao devidamente ordenada...( 5 )..|"
-                + "\n| Visualizar no ecrã os resultados da última votação introduzida....( 6 )..|"
+                + "\n| Visualizar e guardar em ficheiro os resultados da votação.........( 6 )..|"
                 + "\n| Visualizar votação os resultados obtidos em função da faixa etária( 7 )..|"
                 + "\n| Criar uma página HTML com a informação obtida no ponto 6..........( 8 )..|"
                 + "\n#..............................................................SAIR.( 0 )..#"
@@ -704,7 +704,7 @@ public class Savop {
      * @return opção escolhida
      */
     private static int menuAlterarDadosDeputado(String[] deputados) {
-        out.format("%6s-%30s-%7s-%12s%n", deputados[0], deputados[1], deputados[2], deputados[3]);
+        out.format("%-6s# %-30s# %-10s# %-6s%n", deputados[0], deputados[1], deputados[2], deputados[3]);
 
         String menu = "\n#================================  MENU  ==================================#"
                 + "\n| Alterar Nome do Deputado..........................................( 1 )..|"

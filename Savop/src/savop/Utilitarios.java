@@ -56,13 +56,13 @@ public class Utilitarios {
     }
 
     public static boolean validadeDataDeNascimento(String datadenascimento) throws java.text.ParseException {
-        DateFormat df = new SimpleDateFormat("yyyyMMdd");
-        Calendar cal = new GregorianCalendar();
+        DateFormat dataemformato = new SimpleDateFormat("yyyyMMdd");
+        Calendar calendario = new GregorianCalendar();
 
         /**
          * gera calendário
          */
-        cal.setTime(df.parse(datadenascimento));
+        calendario.setTime(dataemformato.parse(datadenascimento));
 
         /**
          * separando os dados da string para comparacao e validacao
@@ -79,19 +79,19 @@ public class Utilitarios {
          * a data passada era invalida
          *
          */
-        if ((new Integer(dia)).intValue() != (new Integer(cal.get(Calendar.DAY_OF_MONTH))).intValue()) {
+        if ((new Integer(dia)).intValue() != (new Integer(calendario.get(Calendar.DAY_OF_MONTH))).intValue()) {
             /**
              * dia invalido
              */
             return (false);
-        } else if ((new Integer(mes)).intValue() != (new Integer(cal.get(Calendar.MONTH) + 1)).intValue()) {
+        } else if ((new Integer(mes)).intValue() != (new Integer(calendario.get(Calendar.MONTH) + 1)).intValue()) {
             /**
              * mes invalido
              */
 
             return (false);
         } else {
-            if ((new Integer(ano)).intValue() != (new Integer(cal.get(Calendar.YEAR))).intValue()) {
+            if ((new Integer(ano)).intValue() != (new Integer(calendario.get(Calendar.YEAR))).intValue()) {
                 /**
                  * ano invalido
                  */
@@ -157,27 +157,27 @@ public class Utilitarios {
     }
 
     public static int calcularIdade(String datadenascimento) {
-        DateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        Date dataNascInput = null;
+        DateFormat dataemformato = new SimpleDateFormat("yyyyMMdd");
+        Date dataNasc = null;
         try {
 
-            dataNascInput = sdf.parse(datadenascimento);
+            dataNasc = dataemformato.parse(datadenascimento);
         } catch (Exception e) {
         }
-        Calendar dateOfBirth = new GregorianCalendar();
-        dateOfBirth.setTime(dataNascInput);
+        Calendar datanascimentonocalendario = new GregorianCalendar();
+        datanascimentonocalendario.setTime(dataNasc);
 
 // Cria um objeto calendar com a data atual
-        Calendar today = Calendar.getInstance();
+        Calendar datahoje = Calendar.getInstance();
 
 // Obtém a idade baseado no ano
-        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
-        dateOfBirth.add(Calendar.YEAR, age);
-        if (today.before(dateOfBirth)) {
-            age--;
+        int idade = datahoje.get(Calendar.YEAR) - datanascimentonocalendario.get(Calendar.YEAR);
+        datanascimentonocalendario.add(Calendar.YEAR, idade);
+        if (datahoje.before(datanascimentonocalendario)) {
+            idade--;
         }
 
-        return age;
+        return idade;
 
     }
 

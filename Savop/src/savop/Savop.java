@@ -39,15 +39,32 @@ public class Savop {
      * no valor para as organizar
      * @param valida é uma validação para controlar o sucesso da alteração dos
      * dados do deputado
-     *
-     *
+     * @param logErros criação do ficheiro para guardar os erros
+     * @param escreverlog escreve o erro no ficheiro logErros
+     * @param id string responsável por guardar o id do deputado a alterar no
+     * ponto 3
+     * @param assuntovotado string responsável por informar o metodo
+     * carregarVotacoes no ponto 4
+     * @param deputados Matriz onde são carregados os dados dos deputados
+     * @param deputadosvotacoes Matriz onde são carregados os dados dos
+     * deputados e respectivas votações ordenados
+     * @param partidos Vetor onde são carregados todos os partidos diferentes
+     * existentes
+     * @param votospartido Matriz onde são carregados as votacoes existentes por
+     * partido
+     * @param totaisvotacao vetor onde são carregadas as somas/totais das
+     * votações
+     * @param votosfaixaetaria Matriz onde são carregadas as percentagens dos
+     * votos obtidos em função da faixa etária
+     * @param votacoes Vetor onde são carregadas as votações mediante a posição
+     * do deputado obtida na procura
      */
     public static void main(String[] args) throws FileNotFoundException, ParseException {
         int ndeputados = 0, npartidos = 0, opcao, nvotacoes = 0, auxnvotacoes = 0;
         boolean valida = false;
         File logErros = LogErros.criarLogErros();
         Formatter escreverlog = new Formatter(logErros);
-        String id, assuntovotado = "";
+        String id, assuntovotado;
         String[][] deputados;
         String[][] deputadosvotacoes;
         String[] partidos;
@@ -205,7 +222,7 @@ public class Savop {
      *
      */
     private static void criarPaginaHTML(String assuntovotado, int[][] votospartido, int npartidos, String[] partidos, int[] totaisvotacao) throws FileNotFoundException {
-        String nomeFich = "Resultados_"+assuntovotado+PAGINA_HTML;
+        String nomeFich = "Resultados_" + assuntovotado + PAGINA_HTML;
         String titulo = "RESULTADOS DA VOTACAO " + assuntovotado;
         String cabecalho = "RESULTADOS DA VOTACAO " + assuntovotado;
         String[] cabecalhotabela = new String[]{"PARTIDOS", "VOTOS A FAVOR", "VOTOS CONTRA", "ABSTENÇOES"};
@@ -610,7 +627,10 @@ public class Savop {
      *
      * @param posição procura por id o deputado com a ajuda do metodo
      * @param alterado valida se a alteração e efetuada com sucesso
-     * Utilitarios.procurarDeputados
+     * @param nomevalido transporta o valor da validação do NOME
+     * @param partidovalido transporta o valor da validação do PARTIDO
+     * @param datanascimentovalida transporta o valor da validação da DATA de
+     * NASCIMENTO
      * @return true ou false mediande a alteração efetuada com sucesso ou não
      */
     private static boolean alteraDadosDeputado(String[][] deputados, String id) throws ParseException {
@@ -625,34 +645,34 @@ public class Savop {
                 switch (opcao) {
                     case 1:
                         out.format("Novo Nome: ");
-                        String auxnome=in.nextLine();
-                        if(Utilitarios.validaNome(auxnome)){
+                        String auxnome = in.nextLine();
+                        if (Utilitarios.validaNome(auxnome)) {
                             deputados[posicao][1] = auxnome;
                             alterado = true;
-                        }else{
-                            out.format("%n%s%n","Nome NÃO foi alterado, pois foi introduzido um nome inválido");
+                        } else {
+                            out.format("%n%s%n", "Nome NÃO foi alterado, pois foi introduzido um nome inválido");
                         }
                         Utilitarios.continuar();
                         break;
                     case 2:
                         out.format("Novo partido: ");
-                        String auxpartido=in.nextLine();
-                        if(Utilitarios.validaPartido(auxpartido)){
+                        String auxpartido = in.nextLine();
+                        if (Utilitarios.validaPartido(auxpartido)) {
                             deputados[posicao][2] = auxpartido;
                             alterado = true;
-                        }else{
-                            out.format("%n%s%n","Partido NÃO foi alterado, pois foi introduzido um nome de Partido inválido");
+                        } else {
+                            out.format("%n%s%n", "Partido NÃO foi alterado, pois foi introduzido um nome de Partido inválido");
                         }
                         Utilitarios.continuar();
                         break;
                     case 3:
                         out.format("Nova Data de nascimento: ");
-                        String auxdatanascimento=in.nextLine();
-                        if(Utilitarios.validadeDataDeNascimento(auxdatanascimento)){
+                        String auxdatanascimento = in.nextLine();
+                        if (Utilitarios.validadeDataDeNascimento(auxdatanascimento)) {
                             deputados[posicao][3] = auxdatanascimento;
                             alterado = true;
-                        }else{
-                            out.format("%n%s%n","Data de nascimento inválida ou formato inválido yyyyMMdd. Deputado não alterado");
+                        } else {
+                            out.format("%n%s%n", "Data de nascimento inválida ou formato inválido yyyyMMdd. Deputado não alterado");
                         }
                         Utilitarios.continuar();
                         break;
@@ -704,8 +724,11 @@ public class Savop {
      *
      * @param dadostemporarios acumula dados temporários da string dividida por
      * ";"
-     * @param linhaslidas corresponde a todas as linhas lidas válidas e não
-     * válidas
+     * @param idvalido transporta o valor da validação do ID
+     * @param nomevalido transporta o valor da validação do NOME
+     * @param partidovalido transporta o valor da validação do PARTIDO
+     * @param datanascimentovalida transporta o valor da validação da DATA de
+     * NASCIMENTO
      * @return numero de linhas lidas com sucesso
      */
     private static int guardarDeputados(String linha, String[][] deputados, int nDeputados, Formatter escreverlog) throws FileNotFoundException, ParseException {
@@ -719,7 +742,7 @@ public class Savop {
             String auxnome = dadostemporarios[1].trim();
             String auxpartido = dadostemporarios[2].trim();
             String auxdatanascimento = dadostemporarios[3].trim();
-            int t=auxid.length();
+            int t = auxid.length();
             if (t == 5) {
                 idvalido = true;
                 //deputados[nDeputados][0] = id;

@@ -6,7 +6,6 @@
 package savop;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -67,11 +66,9 @@ public class Utilitarios {
         /**
          * separando os dados da string para comparacao e validacao
          */
-        
-        String ano = datadenascimento.substring(0,4);
-        String mes = datadenascimento.substring(4,6);
-        String dia = datadenascimento.substring(6,8);
-        
+        String ano = datadenascimento.substring(0, 4);
+        String mes = datadenascimento.substring(4, 6);
+        String dia = datadenascimento.substring(6, 8);
 
         /**
          * testando se ha discrepancia entre a data que foi inserida no
@@ -152,7 +149,7 @@ public class Utilitarios {
         String nomes[] = nomecompleto.split("\\ ");
         String nome1 = nomes[0];
         String sobrenome = nomes[nomes.length - 1];
-        String nomeabreviado = nome1+" "+sobrenome;
+        String nomeabreviado = nome1 + " " + sobrenome;
         return nomeabreviado;
     }
 
@@ -193,11 +190,12 @@ public class Utilitarios {
         return totaisvotacao;
 
     }
-    public static double[][]passarPercentagem(double[][]votosfaixaetaria,int nvotacoes){
-        double percentagem=0;
-         for(int i=0;i<votosfaixaetaria.length;i++){
-            for(int j=0;j<votosfaixaetaria[0].length;j++){
-                percentagem = (votosfaixaetaria[i][j]/nvotacoes*100);
+
+    public static double[][] passarPercentagem(double[][] votosfaixaetaria, int nvotacoes) {
+        double percentagem = 0;
+        for (int i = 0; i < votosfaixaetaria.length; i++) {
+            for (int j = 0; j < votosfaixaetaria[0].length; j++) {
+                percentagem = (votosfaixaetaria[i][j] / nvotacoes * 100);
                 votosfaixaetaria[i][j] = percentagem;
             }
         }

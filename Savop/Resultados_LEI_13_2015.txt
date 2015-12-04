@@ -4,12 +4,12 @@ Resultados: LEI_13_2015
 PARTIDO             # VOTOS A FAVOR  # VOTOS CONTRA   # ABSTENÇOES     
 =================================================================
 PartidoG            # 4              # 5              # 0              
-PartidoF            # 4              # 0              # 2              
-PartidoC            # 2              # 0              # 1              
-PartidoD            # 0              # 0              # 2              
+PartidoF            # 5              # 0              # 1              
+PartidoD            # 1              # 0              # 2              
+PartidoC            # 1              # 0              # 1              
 PartidoB            # 0              # 1              # 0              
 PartidoA            # 0              # 0              # 0              
 PartidoE            # 0              # 0              # 0              
 =================================================================
-Totais Votação      # 10             # 6              # 5              
+Totais Votação      # 11             # 6              # 4              
 =================================================================

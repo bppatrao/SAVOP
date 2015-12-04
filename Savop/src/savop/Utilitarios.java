@@ -42,7 +42,6 @@ public class Utilitarios {
     }
 
     public static boolean validaNome(String nome) {
-
         if (nome.matches("^[\\p{L} .'-]+$")) {
             return true;
         }
@@ -50,16 +49,10 @@ public class Utilitarios {
     }
 
     public static boolean validaPartido(String partido) {
-        if ("".equals(partido)) {
-            System.out.println("O campo não pode ficar em branco!");
-            return false;
-        } else if (partido.matches("\\p{Alpha}*")) {
-            System.out.println("Partido Validado!");
+        if (partido.matches("^[\\p{L} .'-]+$")) {
             return true;
-        } else {
-            System.out.println("O Partido só pode conter LETRAS");
-            return false;
         }
+        return false;
     }
 
     public static boolean validadeDataDeNascimento(String datadenascimento) throws java.text.ParseException {

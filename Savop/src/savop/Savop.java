@@ -613,7 +613,7 @@ public class Savop {
      * Utilitarios.procurarDeputados
      * @return true ou false mediande a alteração efetuada com sucesso ou não
      */
-    private static boolean alteraDadosDeputado(String[][] deputados, String id) {
+    private static boolean alteraDadosDeputado(String[][] deputados, String id) throws ParseException {
         int posicao = Utilitarios.procurarDeputados(deputados, id), opcao;
         boolean alterado = false;
         boolean nomevalido = false;
@@ -624,7 +624,7 @@ public class Savop {
                 opcao = menuAlterarDadosDeputado(deputados[posicao]);
                 switch (opcao) {
                     case 1:
-                        out.format("Novo Nome:");
+                        out.format("Novo Nome: ");
                         String auxnome=in.nextLine();
                         if(Utilitarios.validaNome(auxnome)){
                             deputados[posicao][1] = auxnome;
@@ -635,7 +635,7 @@ public class Savop {
                         Utilitarios.continuar();
                         break;
                     case 2:
-                        out.format("Novo partido:");
+                        out.format("Novo partido: ");
                         String auxpartido=in.nextLine();
                         if(Utilitarios.validaPartido(auxpartido)){
                             deputados[posicao][2] = auxpartido;
@@ -646,9 +646,15 @@ public class Savop {
                         Utilitarios.continuar();
                         break;
                     case 3:
-                        out.format("Alterar Data de nascimento");
-                        deputados[posicao][3] = in.nextLine();
-                        alterado = true;
+                        out.format("Nova Data de nascimento: ");
+                        String auxdatanascimento=in.nextLine();
+                        if(Utilitarios.validadeDataDeNascimento(auxdatanascimento)){
+                            deputados[posicao][3] = auxdatanascimento;
+                            alterado = true;
+                        }else{
+                            out.format("%n%s%n","Data de nascimento inválida ou formato inválido yyyyMMdd. Deputado não alterado");
+                        }
+                        Utilitarios.continuar();
                         break;
                     default:
                         if (opcao != 0) {
@@ -720,28 +726,28 @@ public class Savop {
                 //nDeputados++;
             } else {
                 idvalido = false;
-                String erro = "O ID:" + auxid + " presente no ficheiro deputados.txt não apresenta um formato válido!";
+                String erro = "O ID: " + auxid + " presente no ficheiro deputados.txt não apresenta um formato válido!";
                 LogErros.guardarFicheiroErros(erro, escreverlog);
             }
             if (Utilitarios.validaNome(auxnome)) {
                 nomevalido = true;
             } else {
                 nomevalido = false;
-                String erro = "O nome" + auxnome + " presente no ficheiro deputados.txt não apresenta um formato válido!";
+                String erro = "O nome " + auxnome + " presente no ficheiro deputados.txt não apresenta um formato válido!";
                 LogErros.guardarFicheiroErros(erro, escreverlog);
             }
             if (Utilitarios.validaNome(auxpartido)) {
                 partidovalido = true;
             } else {
                 partidovalido = false;
-                String erro = "O nome" + auxpartido + " presente no ficheiro deputados.txt não apresenta um formato válido!";
+                String erro = "O partido " + auxpartido + " presente no ficheiro deputados.txt não apresenta um formato válido!";
                 LogErros.guardarFicheiroErros(erro, escreverlog);
             }
             if (Utilitarios.validadeDataDeNascimento(auxdatanascimento)) {
                 datanascimentovalida = true;
             } else {
                 datanascimentovalida = false;
-                String erro = "A data de nascimento " + auxdatanascimento + " presente no ficheiro deputados.txt não apresenta um formato válido yyyyMMdd!";
+                String erro = "A data de nascimento " + auxdatanascimento + " presente no ficheiro deputados.txt não é válida ou formato invalido yyyyMMdd!";
                 LogErros.guardarFicheiroErros(erro, escreverlog);
             }
             if (idvalido == true && nomevalido == true && partidovalido == true && datanascimentovalida == true) {
